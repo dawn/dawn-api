@@ -1,5 +1,5 @@
 #
-# dawn/dawn-api.gemspec
+# dawn-api.gemspec
 #
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.name        = 'dawn-api'
   s.summary     = 'Dawn API'
   s.description = 'Dawn Client API'
-  s.homepage    = 'http://dawn.dev:5000/'
+  s.homepage    = 'https://github.com/dawn/dawn-api'
   s.version     = Dawn::API::Version::STRING
   s.platform    = Gem::Platform::RUBY
   s.date        = Time.now.to_date.to_s
