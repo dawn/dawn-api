@@ -15,9 +15,7 @@ module Dawn
 
   OPTIONS = {
     headers:  {},
-    host:     'api.dawn.dev',
     nonblock: false,
-    scheme:   'http'
   }
 
   class AuthenticationError < RuntimeError
@@ -29,7 +27,7 @@ module Dawn
   end
 
   def self.authenticate(options={})
-    options = OPTIONS.merge options
+    options = OPTIONS.merge(host: dawn_api_host, scheme: dawn_scheme).merge(options)
     options[:headers] = options[:headers].merge(HEADERS)
     @api_key = options.delete(:api_key) || ENV['DAWN_API_KEY']
 
