@@ -1,5 +1,8 @@
 Dawn-API
 ========
+[![Gem Version](https://badge.fury.io/rb/dawn-api.svg)](http://badge.fury.io/rb/dawn-api)
+[![Code Climate](https://codeclimate.com/github/dawn/dawn-api.png)](https://codeclimate.com/github/dawn/dawn-api)
+
 API for [Dawn](https://github.com/dawn/dawn)
 
 ## Installation
@@ -13,7 +16,9 @@ gem pack dawn-api.gem
 ```
 
 ## Documentation:
-[API Docs](http://dawn.github.io/docs/)
+[Rubydoc](http://rubydoc.info/gems/dawn-api)
+
+[API Reference](http://dawn.github.io/docs/)
 
 ## Influential ENV variable
 | VAR           | API default   | Description                                                |
