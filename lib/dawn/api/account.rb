@@ -21,7 +21,7 @@ module Dawn
         method: :get,
         expects: 200,
         path: "/account",
-        query: options.to_json
+        query: options
       )["account"]
     end
 
@@ -30,7 +30,7 @@ module Dawn
         method: :patch,
         expects: 200,
         path: "/account",
-        body: options.to_json
+        body: { account: options }.to_json
       )["account"]
     end
 
