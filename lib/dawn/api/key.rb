@@ -11,17 +11,11 @@ module Dawn
       @data = data
     end
 
-    def id
-      data["id"]
-    end
-
-    def fingerprint
-      data["fingerprint"]
-    end
-
-    def key
-      data["key"]
-    end
+    data_key :id
+    data_key :created_at
+    data_key :updated_at
+    data_key :fingerprint
+    data_key :key
 
     def destroy
       request(

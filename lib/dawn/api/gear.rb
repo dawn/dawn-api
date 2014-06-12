@@ -13,32 +13,17 @@ module Dawn
       @data = data
     end
 
-    def app_id
-      data["app_id"]
-    end
+    data_key :id
+    data_key :created_at
+    data_key :updated_at
+    data_key :name
+    data_key :uptime
+    data_key :proctype
+    data_key :number
+    data_key :app_id, "app/id"
 
     def app
       @app ||= App.find(id: app_id)
-    end
-
-    def id
-      data["id"]
-    end
-
-    def name
-      data["name"]
-    end
-
-    def uptime
-      data["uptime"]
-    end
-
-    def type
-      data["type"]
-    end
-
-    def number
-      data["number"]
     end
 
     def refresh

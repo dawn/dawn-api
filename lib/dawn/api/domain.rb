@@ -13,20 +13,14 @@ module Dawn
       @data = data
     end
 
-    def app_id
-      data["app_id"]
-    end
+    data_key :id
+    data_key :created_at
+    data_key :updated_at
+    data_key :url
+    data_key :app_id, "app/id"
 
     def app
       @app ||= App.find(id: app_id)
-    end
-
-    def id
-      data["id"]
-    end
-
-    def url
-      data["url"]
     end
 
     def refresh

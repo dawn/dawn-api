@@ -18,21 +18,12 @@ module Dawn
       @env = Env.new(self, @data.delete("env"))
     end
 
-    def name
-      data["name"]
-    end
-
-    def id
-      data["id"]
-    end
-
-    def formation
-      data["formation"]
-    end
-
-    def git
-      data["git"]
-    end
+    data_key :id
+    data_key :created_at
+    data_key :updated_at
+    data_key :name
+    data_key :formation
+    data_key :git
 
     def restart(options={})
       request(
