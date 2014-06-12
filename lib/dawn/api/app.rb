@@ -66,12 +66,12 @@ module Dawn
     end
 
     def update(options={})
-      data.merge!(json_request(
+      @data = json_request(
         expects: 200,
         method: :patch,
         path: "/apps/#{id}",
         body: { name: name }.merge(options).to_json
-      )["app"])
+      )["app"]
     end
 
     def scale(options={})
