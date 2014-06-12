@@ -121,8 +121,7 @@ module Dawn
     end
 
     def self.destroy(options)
-      app = find options
-      app.destroy if app
+      find(options).destroy
     end
 
   end
