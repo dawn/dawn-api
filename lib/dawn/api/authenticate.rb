@@ -31,7 +31,6 @@ module Dawn
     response = @connection.request(options)
     @last_request_body = response.body
     if expects && response.status != expects
-      STDERR.puts response.body
       raise Excon::Errors.status_error(options, response)
     end
     response
