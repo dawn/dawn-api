@@ -28,8 +28,8 @@ module Dawn
     def restart(options={})
       request(
         expects: 200,
-        method: :delete,
-        path: "/apps/#{id}/gears",
+        method: :post,
+        path: "/apps/#{id}/gears/restart",
         query: options
       )
     end
