@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'sshkey',    '~> 1.6'
 
   s.require_path = 'lib'
-  s.files = ['lib/dawn/api.rb'] +
-            Dir.glob('lib/dawn/api/**/*')
+  s.files = ["README.md", "CHANGELOG.md"] +
+            Dir.glob('lib/**/*') +
+            Dir.glob('test/**/*')
 end
