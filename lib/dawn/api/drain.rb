@@ -33,12 +33,12 @@ module Dawn
     end
 
     def update(options={})
-      request(
+      @data = json_request(
         expects: 200,
         method: :post,
         path: "/drains/#{id}",
         body: options.to_json
-      )
+      )["drain"]
     end
 
     def destroy(options={})

@@ -45,12 +45,12 @@ module Dawn
     end
 
     def update(options={})
-      request(
+      @data = json_request(
         expects: 200,
         method: :post,
         path: "/gears/#{id}",
         body: options.to_json
-      )
+      )["gear"]
     end
 
     def destroy(options={})
