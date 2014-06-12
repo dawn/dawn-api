@@ -21,9 +21,20 @@ module Dawn
   class AuthenticationError < RuntimeError
   end
 
+  class << self
+    attr_accessor :last_response_body
+  end
+
   def self.request(options)
     Dawn.authenticate unless @connection
-    @connection.request(options)
+    expects = options.delete(:expects)
+    response = @connection.request(options)
+    @last_request_body = response.body
+    if expects && response.status != expects
+      STDERR.puts response.body
+      raise Excon::Errors.status_error(options, response)
+    end
+    response
   end
 
   def self.authenticate(options={})
