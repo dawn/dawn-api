@@ -26,15 +26,6 @@ module Dawn
     data_key :formation
     data_key :git
 
-    def restart(options={})
-      request(
-        expects: 200,
-        method: :post,
-        path: "/apps/#{id}/gears/restart",
-        query: options
-      )
-    end
-
     def gears
       @gears ||= Gears.new self
     end
@@ -49,6 +40,10 @@ module Dawn
 
     def releases
       @releases ||= Releases.new self
+    end
+
+    def restart(options={})
+      gears.restart options
     end
 
     def logs(options={})
