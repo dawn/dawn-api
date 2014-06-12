@@ -74,12 +74,12 @@ module Dawn
       )["app"]
     end
 
-    def scale(options={})
+    def scale(formation)
       request(
         expects: 200,
         method: :post,
         path: "/apps/#{id}/scale",
-        body: options.to_json
+        body: { formation: formation }.to_json
       )
     end
 
