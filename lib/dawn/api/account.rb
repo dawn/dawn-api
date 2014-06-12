@@ -27,7 +27,7 @@ module Dawn
 
     def update(options={})
       @data = json_request(
-        method: :post,
+        method: :patch,
         expects: 200,
         path: "/account",
         body: options.to_json
