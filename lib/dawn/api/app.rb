@@ -4,6 +4,7 @@ require 'dawn/api/app/env'
 require 'dawn/api/app/gears'
 require 'dawn/api/app/drains'
 require 'dawn/api/app/domains'
+require 'dawn/api/app/releases'
 
 module Dawn
   class App
@@ -44,6 +45,10 @@ module Dawn
 
     def domains
       @domains ||= Domains.new self
+    end
+
+    def releases
+      @releases ||= Releases.new self
     end
 
     def logs(options={})
