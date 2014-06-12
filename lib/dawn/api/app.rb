@@ -92,6 +92,15 @@ module Dawn
       )
     end
 
+    def run(options={})
+      request(
+        expects: 200,
+        method: :post,
+        path: "/apps/#{id}/run",
+        body: options.to_json
+      )
+    end
+
     def self.all(options={})
       json_request(
         expects: 200,
