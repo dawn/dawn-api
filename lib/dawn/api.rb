@@ -2,6 +2,7 @@ require 'json'
 
 require 'dawn/api/version'
 require 'dawn/api/authenticate'
+require 'dawn/api/account'
 require 'dawn/api/app'
 require 'dawn/api/domain'
 require 'dawn/api/drain'
