@@ -46,6 +46,15 @@ module Dawn
       gears.restart options
     end
 
+    def refresh(options={})
+      @data = json_request(
+        expects: 200,
+        method: :get,
+        path: "/apps/#{id}",
+        query: options
+      )["app"]
+    end
+
     def logs(options={})
       url = json_request(
         expects: 200,
