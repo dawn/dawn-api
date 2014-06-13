@@ -70,5 +70,9 @@ module Dawn
       )["release"]
     end
 
+    def self.destroy(options={})
+      find(options).destroy
+    end
+
   end
 end
