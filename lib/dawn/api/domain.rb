@@ -60,14 +60,22 @@ module Dawn
     end
 
     def self.find(options)
-      id = options.delete(:id)
+      id = options.delete(:id) ||
+           options.delete(:name) ||
+           options.delete(:uri) ||
+           options.delete(:url)
+      path = "/domains/#{id}"
 
       new json_request(
         expects: 200,
         method: :get,
-        path: "/domains/#{id}",
+        path: path,
         query: options
       )["domain"]
+    end
+
+    def self.destroy(options={})
+      find(options).destroy
     end
 
   end
