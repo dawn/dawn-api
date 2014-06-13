@@ -24,58 +24,40 @@ module Dawn
     end
 
     def refresh
-      @data = json_request(
-        expects: 200,
-        method: :get,
+      @data = get(
         path: "/domains/#{id}",
         query: options
       )["domain"]
     end
 
-    #def update(options={})
-    #  @data = json_request(
-    #    expects: 200,
-    #    method: :post,
-    #    path: "/domains/#{id}",
-    #    body: options.to_json
-    #  )["domain"]
-    #end
-
     def destroy(options={})
-      request(
-        expects: 200,
-        method: :delete,
-        path: "/domains/#{id}",
-        query: options
-      )
+      self.class.destroy(options.merge(id: id))
     end
 
-    def self.all(options={})
-      json_request(
-        expects: 200,
-        method: :get,
-        path: "/domains",
-        query: options
-      ).map { |hsh| new hsh["domain"] }
+    def self.id_param(options)
+      options.delete(:id) ||
+      options.delete(:name) ||
+      options.delete(:uri) ||
+      options.delete(:url) ||
+      raise
     end
 
     def self.find(options)
-      id = options.delete(:id) ||
-           options.delete(:name) ||
-           options.delete(:uri) ||
-           options.delete(:url)
-      path = "/domains/#{id}"
+      id = id_param(options)
 
-      new json_request(
-        expects: 200,
-        method: :get,
-        path: path,
+      new get(
+        path: "/domains/#{id}",
         query: options
       )["domain"]
     end
 
-    def self.destroy(options={})
-      find(options).destroy
+    def self.destroy(options)
+      id = id_param(options)
+
+      delete(
+        path: "/domains/#{id}",
+        query: options
+      )
     end
 
   end
