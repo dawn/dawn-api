@@ -24,54 +24,53 @@ module Dawn
     end
 
     def refresh
-      @data = json_request(
-        expects: 200,
-        method: :get,
+      @data = get(
         path: "/drains/#{id}",
         query: options
       )["drain"]
     end
 
     def update(options={})
-      @data = json_request(
-        expects: 200,
-        method: :post,
+      @data = patch(
         path: "/drains/#{id}",
         body: options.to_json
       )["drain"]
     end
 
-    def destroy(options={})
-      request(
-        expects: 200,
-        method: :delete,
-        path: "/drains/#{id}",
-        query: options
-      )
+    def destroy(options)
+      Drain.destroy(options.merge(id: id))
     end
 
     def self.all(options={})
-      json_request(
-        expects: 200,
-        method: :get,
+      get(
         path: "/drains",
         query: options
       ).map { |hsh| new hsh["drain"] }
     end
 
     def self.find(options={})
-      id = options.delete(:id)
+      id = id_param(options)
 
-      new json_request(
-        expects: 200,
-        method: :get,
+      new get(
         path: "/drains/#{id}",
         query: options
       )["drain"]
     end
 
+    def self.update(options={})
+      new patch(
+        path: "/drains/#{id}",
+        body: options.to_json
+      )["drain"]
+    end
+
     def self.destroy(options={})
-      find(options).destroy
+      id = id_param(options)
+
+      delete(
+        path: "/drains/#{id}",
+        query: options
+      )
     end
 
   end
