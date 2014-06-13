@@ -27,63 +27,52 @@ module Dawn
     end
 
     def refresh
-      @data = json_request(
-        expects: 200,
-        method: :get,
+      @data = get(
         path: "/gears/#{id}",
         query: options
       )["gear"]
     end
 
     def restart(options={})
-      request(
-        expects: 200,
-        method: :post,
+      self.class.restart(options.merge(id: id))
+    end
+
+    def destroy(options)
+      self.class.destroy(options.merge(id: id))
+    end
+
+    def self.all(options={})
+      get(
+        path: "/gears",
+        query: options
+      ).map { |d| new d["gear"] }
+    end
+
+    def self.find(options)
+      id = id_param(options)
+
+      new get(
+        path: "/gears/#{id}",
+        query: options
+      )["gear"]
+    end
+
+    def self.restart(options={})
+      self.class.restart(options.merge(id: id))
+
+      post(
         path: "/gears/#{id}/restart",
         query: options
       )
     end
 
-    def update(options={})
-      @data = json_request(
-        expects: 200,
-        method: :post,
-        path: "/gears/#{id}",
-        body: options.to_json
-      )["gear"]
-    end
+    def self.destroy(options)
+      id = id_param(options)
 
-    def destroy(options={})
-      request(
-        expects: 200,
-        method: :delete,
+      delete(
         path: "/gears/#{id}",
         query: options
       )
-    end
-
-    def self.all(options={})
-      json_request(
-        expects: 200,
-        method: :get,
-        path: "/gears",
-        query: options
-      ).map { |hsh| new hsh["gear"] }
-    end
-
-    def self.find(options)
-      id = options.delete(:id)
-
-      new json_request(
-        expects: 200,
-        method: :get,
-        path: "/gears/#{id}",
-        query: options
-      )["gear"]
-    end
-
-    def self.destroy(options={})
-      find(options).destroy
     end
 
   end
