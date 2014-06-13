@@ -32,14 +32,14 @@ module Dawn
       )["domain"]
     end
 
-    def update(options={})
-      @data = json_request(
-        expects: 200,
-        method: :post,
-        path: "/domains/#{id}",
-        body: options.to_json
-      )["domain"]
-    end
+    #def update(options={})
+    #  @data = json_request(
+    #    expects: 200,
+    #    method: :post,
+    #    path: "/domains/#{id}",
+    #    body: options.to_json
+    #  )["domain"]
+    #end
 
     def destroy(options={})
       request(
