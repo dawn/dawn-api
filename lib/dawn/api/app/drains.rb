@@ -13,19 +13,21 @@ module Dawn
         @app = app
       end
 
+      def each(&block)
+        all.each(&block)
+      end
+
       def create(options={})
-        Drain.new(json_request(
-          expects: 200,
-          method: :post,
+        options.fetch(:drain)
+
+        Drain.new(post(
           path: "/apps/#{app.id}/drains",
           body: options.to_json
         )["drain"]).tap { |d| d.app = @app }
       end
 
       def all(options={})
-        json_request(
-          expects: 200,
-          method: :get,
+        get(
           path: "/apps/#{app.id}/drains",
           query: options
         ).map { |hsh| Drain.new(hsh["drain"]).tap { |d| d.app = @app } }

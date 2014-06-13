@@ -13,19 +13,21 @@ module Dawn
         @app = app
       end
 
+      def each(&block)
+        all.each(&block)
+      end
+
       def create(options={})
-        Release.new(json_request(
-          expects: 200,
-          method: :post,
+        options.fetch(:release)
+
+        Release.new(post(
           path: "/apps/#{app.id}/releases",
           body: options.to_json
         )["release"]).tap { |d| d.app = @app }
       end
 
       def all(options={})
-        json_request(
-          expects: 200,
-          method: :get,
+        get(
           path: "/apps/#{app.id}/releases",
           query: options
         ).map { |hsh| Release.new(hsh["release"]).tap { |d| d.app = @app } }

@@ -13,19 +13,21 @@ module Dawn
         @app = app
       end
 
-      def create(options={})
-        Domain.new(json_request(
-          expects: 200,
-          method: :post,
+      def each(&block)
+        all.each(&block)
+      end
+
+      def create(options)
+        options.fetch(:domain)
+
+        Domain.new(post(
           path: "/apps/#{app.id}/domains",
           body: options.to_json
         )["domain"]).tap { |d| d.app = @app }
       end
 
       def all(options={})
-        json_request(
-          expects: 200,
-          method: :get,
+        get(
           path: "/apps/#{app.id}/domains",
           query: options
         ).map { |hsh| Domain.new(hsh["domain"]).tap { |d| d.app = @app } }

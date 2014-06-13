@@ -13,19 +13,21 @@ module Dawn
         @app = app
       end
 
+      def each(&block)
+        all.each(&block)
+      end
+
       def create(options={})
-        Gear.new(json_request(
-          expects: 200,
-          method: :post,
+        options.fetch(:gear)
+
+        Gear.new(post(
           path: "/apps/#{app.id}/gears",
           body: options.to_json
         )["gear"]).tap { |d| d.app = @app }
       end
 
       def all(options={})
-        json_request(
-          expects: 200,
-          method: :get,
+        get(
           path: "/apps/#{app.id}/gears",
           query: options
         ).map { |hsh| Gear.new(hsh["gear"]).tap { |d| d.app = @app } }
@@ -36,9 +38,7 @@ module Dawn
       end
 
       def restart(options={})
-        request(
-          expects: 200,
-          method: :post,
+        post(
           path: "/apps/#{app.id}/gears/restart",
           body: options.to_json
         )
