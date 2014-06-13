@@ -1,13 +1,13 @@
 require_relative '../api_spec_helper.rb'
 
 describe Dawn::App do
-  describe "::all" do
+  context "::all" do
     it "should retrieve all user Apps" do
       Dawn::App.all
     end
   end
 
-  describe "::create" do
+  context "::create" do
     it "should create 1 App given a name" do
       Dawn::App.create(name: "cookie-crushers")
     end
@@ -16,7 +16,7 @@ describe Dawn::App do
     end
   end
 
-  describe "::find" do
+  context "::find" do
     it "should retrieve 1 app by id" do
       app = Dawn::App.all.first
       Dawn::App.find(id: app.id)
@@ -26,22 +26,21 @@ describe Dawn::App do
     end
   end
 
-  describe "#restart" do
-    let(:app) { Dawn::App.find(name: "cookie-crushers") }
+  let(:app) { Dawn::App.find(name: "cookie-crushers") }
+
+  context "#restart" do
     it "should restart the the app" do
       app.restart
     end
   end
 
-  describe "#logs" do
-    let(:app) { Dawn::App.find(name: "cookie-crushers") }
+  context "#logs" do
     it "should retrieve logs url for app" do
       app.logs
     end
   end
 
-  describe "#scale" do
-    let(:app) { Dawn::App.find(name: "cookie-crushers") }
+  context "#scale" do
     it "should scale app" do
       app.scale web: 2
     end
@@ -50,8 +49,7 @@ describe Dawn::App do
     end
   end
 
-  describe "#gears" do
-    let(:app) { Dawn::App.find(name: "cookie-crushers") }
+  context "#gears" do
     it "should have gears" do
       expect(app.gears).to be_an_instance_of(Dawn::App::Gears)
     end
@@ -63,8 +61,7 @@ describe Dawn::App do
     end
   end
 
-  describe "#drains" do
-    let(:app) { Dawn::App.find(name: "cookie-crushers") }
+  context "#drains" do
     it "should have drains" do
       expect(app.drains).to be_an_instance_of(Dawn::App::Drains)
     end
@@ -73,8 +70,7 @@ describe Dawn::App do
     end
   end
 
-  describe "#domains" do
-    let(:app) { Dawn::App.find(name: "cookie-crushers") }
+  context "#domains" do
     it "should have domains" do
       expect(app.domains).to be_an_instance_of(Dawn::App::Domains)
     end
@@ -83,27 +79,23 @@ describe Dawn::App do
     end
   end
 
-  describe "#releases" do
-    let(:app) { Dawn::App.find(name: "cookie-crushers") }
+  context "#releases" do
     it "should have releases" do
       expect(app.releases).to be_an_instance_of(Dawn::App::Releases)
     end
     it "should retrieve releases" do
       app.releases.all
     end
-    it "should retrieve gears" do
-      app.gears.all
-    end
   end
 
-  describe "#update" do
+  context "#update" do
     it "should update 1 app" do
       app = Dawn::App.find(name: "cookie-crushers")
       app.update(name: "bread-crushers")
     end
   end
 
-  describe "#destroy" do
+  context "#destroy" do
     it "should destroy 1 app" do
       app = Dawn::App.find(name: "bread-crushers")
       app.destroy
