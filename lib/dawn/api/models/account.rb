@@ -17,27 +17,26 @@ module Dawn
     data_key :api_key
 
     def refresh(options={})
-      @data = json_request(
-        method: :get,
-        expects: 200,
+      @data = get(
         path: "/account",
         query: options
       )["account"]
     end
 
     def update(options={})
-      @data = json_request(
-        method: :patch,
-        expects: 200,
+      options.fetch(:account)
+
+      @data = patch(
         path: "/account",
-        body: { account: options }.to_json
+        body: options.to_json
       )["account"]
     end
 
     def self.current(options={})
-      account = new({})
-      account.refresh(options)
-      account
+      new get(
+        path: "/account",
+        query: options
+      )["account"]
     end
 
   end

@@ -1,11 +1,12 @@
 require 'dawn/api/base_api'
-require 'dawn/api/drain'
+require 'dawn/api/models/drain'
 
 module Dawn
   class App
     class Drains
 
       include BaseApi
+      include Enumerable
 
       attr_reader :app
 

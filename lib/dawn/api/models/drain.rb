@@ -1,7 +1,7 @@
 require 'dawn/api/base_api'
 
 module Dawn
-  class Domain
+  class Drain
 
     include BaseApi
 
@@ -25,37 +25,36 @@ module Dawn
 
     def refresh
       @data = get(
-        path: "/domains/#{id}",
+        path: "/drains/#{id}",
         query: options
-      )["domain"]
+      )["drain"]
     end
 
-    def destroy(options={})
-      self.class.destroy(options.merge(id: id))
+    def destroy(options)
+      Drain.destroy(options.merge(id: id))
     end
 
-    def self.id_param(options)
-      options.delete(:id) ||
-      options.delete(:name) ||
-      options.delete(:uri) ||
-      options.delete(:url) ||
-      raise
+    def self.all(options={})
+      get(
+        path: "/drains",
+        query: options
+      ).map { |hsh| new hsh["drain"] }
     end
 
-    def self.find(options)
+    def self.find(options={})
       id = id_param(options)
 
       new get(
-        path: "/domains/#{id}",
+        path: "/drains/#{id}",
         query: options
-      )["domain"]
+      )["drain"]
     end
 
-    def self.destroy(options)
+    def self.destroy(options={})
       id = id_param(options)
 
       delete(
-        path: "/domains/#{id}",
+        path: "/drains/#{id}",
         query: options
       )
     end

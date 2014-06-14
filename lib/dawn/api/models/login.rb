@@ -6,9 +6,7 @@ module Dawn
     include BaseApi
 
     def self.login(options={})
-      json_request(
-        expects: 200,
-        method: :post,
+      post(
         path: '/login',
         body: options.to_json
       )

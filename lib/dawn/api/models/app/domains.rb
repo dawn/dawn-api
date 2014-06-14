@@ -1,11 +1,12 @@
 require 'dawn/api/base_api'
-require 'dawn/api/domain'
+require 'dawn/api/models/domain'
 
 module Dawn
   class App
     class Domains
 
       include BaseApi
+      include Enumerable
 
       attr_reader :app
 
@@ -33,7 +34,7 @@ module Dawn
         ).map { |hsh| Domain.new(hsh["domain"]).tap { |d| d.app = @app } }
       end
 
-      def find(options={})
+      def find(options)
         Domain.find(options).tap { |d| d.app = @app }
       end
 

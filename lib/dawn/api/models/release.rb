@@ -24,7 +24,7 @@ module Dawn
     end
 
     def refresh
-      @data = json_request(
+      @data = request(
         expects: 200,
         method: :get,
         path: "/releases/#{id}",
@@ -32,46 +32,20 @@ module Dawn
       )["release"]
     end
 
-    def update(options={})
-      request(
-        expects: 200,
-        method: :post,
-        path: "/releases/#{id}",
-        body: options.to_json
-      )
-    end
-
-    def destroy(options={})
-      request(
-        expects: 200,
-        method: :delete,
-        path: "/releases/#{id}",
-        query: options
-      )
-    end
-
     def self.all(options={})
-      json_request(
-        expects: 200,
-        method: :get,
+      get(
         path: "/releases",
         query: options
       ).map { |hsh| new hsh["release"] }
     end
 
     def self.find(options={})
-      id = options.delete(:id)
+      id = id_param(options)
 
-      new json_request(
-        expects: 200,
-        method: :get,
+      new get(
         path: "/releases/#{id}",
         query: options
       )["release"]
-    end
-
-    def self.destroy(options={})
-      find(options).destroy
     end
 
   end

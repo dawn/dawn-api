@@ -1,11 +1,12 @@
 require 'dawn/api/base_api'
-require 'dawn/api/release'
+require 'dawn/api/models/release'
 
 module Dawn
   class App
     class Releases
 
       include BaseApi
+      include Enumerable
 
       attr_reader :app
 
