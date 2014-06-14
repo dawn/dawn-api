@@ -2,17 +2,17 @@ require "sshkey"
 require_relative '../api_spec_helper.rb'
 
 describe Dawn::Key do
-  let(:testkey) { Dawn::Key.add key: SSHKey.generate.ssh_public_key }
+  let(:testkey) { Dawn::Key.create key: SSHKey.generate.ssh_public_key }
 
-  context ".add" do
-    it "should add a new sshkey" do
-      Dawn::Key.add(key: SSHKey.generate.ssh_public_key)
+  context ".create" do
+    it "should create a new sshkey" do
+      Dawn::Key.create(key: SSHKey.generate.ssh_public_key)
     end
     it "should conflict if sshkey exists" do
-      expect { Dawn::Key.add(key: testkey.key) }.to raise_error(Excon::Errors::Conflict)
+      expect { Dawn::Key.create(key: testkey.key) }.to raise_error(Excon::Errors::UnprocessableEntity)
     end
     it "should fail if sshkey is invalid" do
-      expect { Dawn::Key.add(key: "invalid key for the win") }.to raise_error(Excon::Errors::UnprocessableEntity)
+      expect { Dawn::Key.create(key: "invalid key for the win") }.to raise_error(Excon::Errors::UnprocessableEntity)
     end
   end
 
