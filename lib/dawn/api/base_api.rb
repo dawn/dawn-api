@@ -4,7 +4,6 @@ require 'json'
 module Dawn
   module BaseApi
     module RequestExtension
-
       def request(options)
         options[:expects] = 200 unless options.key?(:expects)
         JSON.load Dawn.request(options).body
@@ -13,11 +12,9 @@ module Dawn
       [:get, :post, :put, :patch, :delete].each do |key|
         define_method(key) { |options| request options.merge(method: key) }
       end
-
     end
 
-    module Extension
-
+    module ClassExtension
       include RequestExtension
 
       def id_param(options)
@@ -36,14 +33,12 @@ module Dawn
           route_dp.inject(@data) { |d, key| d[key] }[last_key] = v
         end
       end
+    end
 
+    def self.included(mod)
+      mod.extend ClassExtension
     end
 
     include RequestExtension
-
-    def self.included(mod)
-      mod.extend Extension
-    end
-
   end
 end
