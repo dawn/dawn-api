@@ -29,7 +29,7 @@ module Dawn
     Dawn.authenticate unless @connection
     expects = options.delete(:expects)
     response = @connection.request(options)
-    @last_request_body = response.body
+    self.last_response_body = response.body
     if expects && response.status != expects
       raise Excon::Errors.status_error(options.merge(expects: expects), response)
     end
