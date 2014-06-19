@@ -1,4 +1,5 @@
 require 'dawn/api/version'
+require 'base64'
 require 'excon'
 require 'netrc'
 
@@ -67,7 +68,9 @@ module Dawn
         end
       end
     end
-    @headers = HEADERS.merge 'Authorization' => "Token token=\"#{@api_key}\""
+    @headers = HEADERS.merge(
+      'Authorization' => "Basic #{::Base64.strict_encode64("#{username}:#{@api_key}")}"
+    )
     @connection = Excon.new "#{options[:scheme]}://#{options[:host]}", headers: @headers
   end
 
