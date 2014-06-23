@@ -3,8 +3,8 @@ module Dawn
     module Version
       MAJOR = 0
       MINOR = 10
-      PATCH = 0
-      BUILD = "dev"#nil
+      PATCH = 1
+      BUILD = nil
       STRING = [[MAJOR, MINOR, PATCH].compact.join("."), BUILD].compact.join("-").freeze
     end
     # backward compatibility
