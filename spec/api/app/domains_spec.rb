@@ -1,31 +1,30 @@
-require_relative '../../api_spec_helper.rb'
+require 'api_spec_helper'
 
-describe Dawn::App::Domains do
-  before(:suite) do
-    Dawn::App.create(name: "domains-test-app")
-  end
+describe Dawn::App::Domains, :vcr do
+  subject { Dawn::App::Domains }
 
-  let(:app) { Dawn::App.find(name: "domains-test-app") }
-  let(:domains) { app.domains }
+  let(:app) { Dawn::App.find(name: "domains-test") }
+
+  it { should be_a Class }
 
   ###
   context "#all" do
+    subject { app.domains }
+
     it "should return all domains" do
-      domains.all
+      subject.all
     end
+
     it "should have only domains" do
-      domains.all.all? { |domain| expect(domain).to be_an_instance_of Dawn::Domain }
+      subject.all.all? { |domain| expect(domain).to be_an_instance_of(Dawn::Domain) }
     end
   end
 
   context "#create" do
-    it "should create a new domain" do
-      domains.create
-    end
-  end
+    subject { app.domains }
 
-  ###
-  after(:suite) do
-    Dawn::App.find(name: "domains-test-app").destroy
+    it "should create a new domain" do
+      subject.create(domain: { url: "http://wearepeople.io" })
+    end
   end
 end

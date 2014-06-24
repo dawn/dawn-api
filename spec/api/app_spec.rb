@@ -1,86 +1,98 @@
-require_relative '../api_spec_helper.rb'
+require 'api_spec_helper'
 
-describe Dawn::App do
-  context ".all" do
-    it "should retrieve all user Apps" do
-      Dawn::App.all
+describe Dawn::App, :vcr do
+  subject { Dawn::App }
+
+  let(:app_name1) { "cookie-crushers" }
+  let(:app_name2) { "cookie-crushers2" }
+  let(:app_name3) { "some-app" }
+  let(:app_name4) { "some-app-thing" }
+  let(:invalid_app_name) { "ThaTunaCorps" }
+
+  let(:app) { Dawn::App.find(name: app_name1) }
+
+  it { should be_a Class }
+
+  describe ".all" do
+    it "should retrieve all user apps" do
+      subject.all
     end
 
-    it "should only have an array of Apps" do
-      Dawn::App.all.all? { |o| expect(o).to be_an_instance_of(Dawn::App) }
+    it "should only have an array of apps" do
+      subject.all.all? { |o| expect(o).to be_an_instance_of(Dawn::App) }
     end
   end
 
-  context ".create" do
+  describe ".create" do
     it "should raise an IndexError if app key is missing" do
-      expect { Dawn::App.create(blurp: { name: "cookie-crushers" }) }.to raise_error(IndexError)
+      expect { subject.create(blurp: { name: app_name1 }) }.to raise_error(IndexError)
     end
 
     it "should create a new app, given a name" do
-      Dawn::App.create(app: { name: "cookie-crushers" })
+      subject.create(app: { name: app_name1 })
     end
 
     it "should raise an Excon::Errors::UnprocessableEntity when an invalid name is given" do
-      expect { Dawn::App.create(app: { name: "ThaTunaCorps" }) }.to raise_error(Excon::Errors::UnprocessableEntity)
+      expect { subject.create(app: { name: invalid_app_name }) }.to raise_error(Excon::Errors::UnprocessableEntity)
     end
   end
 
-  context ".find" do
+  describe ".find" do
     it "should retrieve 1 app by id" do
-      app = Dawn::App.all.first
-      Dawn::App.find(id: app.id)
+      app = subject.all.first
+      subject.find(id: app.id)
     end
 
     it "should retrieve 1 app by name" do
-      Dawn::App.find(name: "cookie-crushers")
+      subject.find(name: app_name1)
     end
 
     it "should fail to find a non existant app" do
-      expect { Dawn::App.find(id: -1) }.to raise_error(Excon::Errors::NotFound)
+      expect { subject.find(id: -1) }.to raise_error(Excon::Errors::NotFound)
     end
   end
 
-  context ".update" do
+  describe ".update" do
     it "should raise an IndexError if app key is missing" do
-      expect { Dawn::App.update(name: "cookie-crushers", blurp: { name: "cookie-crushers2" }) }.to raise_error(IndexError)
+      expect { subject.update(name: app_name1, blurp: { name: app_name2 }) }.to raise_error(IndexError)
     end
 
     it "should fail to update non-existant app" do
-      expect { Dawn::App.update(name: "some-app", app: { name: "some-app-thing" }) }.to raise_error(Excon::Errors::NotFound)
+      expect { subject.update(name: app_name3, app: { name: app_name4 }) }.to raise_error(Excon::Errors::NotFound)
     end
   end
 
-  context ".destroy" do
+  describe ".destroy" do
     it "should fail to destroy non-existant app" do
-      expect { Dawn::App.destroy(name: "some-app") }.to raise_error(Excon::Errors::NotFound)
+      expect { subject.destroy(name: app_name3) }.to raise_error(Excon::Errors::NotFound)
     end
   end
 
-  context ".logs" do
+  describe ".restart" do
+    it "should fail to restart a non existant app" do
+      expect { subject.restart(id: -1) }.to raise_error(Excon::Errors::NotFound)
+    end
+  end
+
+  describe ".logs" do
     it "should fail to retrieve logs uri for a non existant app" do
-      expect { Dawn::App.logs(id: -1) }.to raise_error(Excon::Errors::NotFound)
+      expect { subject.logs(id: -1) }.to raise_error(Excon::Errors::NotFound)
     end
   end
 
-  let(:app) { Dawn::App.find(name: "cookie-crushers") }
-
-  context "#restart" do
+  describe "#restart" do
     it "should restart the the app" do
       app.restart
     end
-
-    it "should fail to restart a non existant app" do
-      expect { Dawn::App.restart(id: -1) }.to raise_error(Excon::Errors::NotFound)
-    end
   end
 
-  context "#logs" do
+  describe "#logs" do
     it "should retrieve logs url for app" do
       app.logs
     end
   end
 
-  context "#scale" do
+  describe "#scale" do
     it "should raise an IndexError if app key is missing" do
       expect { app.scale blurp: { formation: { web: 2 } } }.to raise_error(IndexError)
     end
@@ -94,7 +106,7 @@ describe Dawn::App do
     end
   end
 
-  context "#gears" do
+  describe "#gears" do
     it "should have gears" do
       expect(app.gears).to be_an_instance_of(Dawn::App::Gears)
     end
@@ -108,7 +120,7 @@ describe Dawn::App do
     end
   end
 
-  context "#drains" do
+  describe "#drains" do
     it "should have drains" do
       expect(app.drains).to be_an_instance_of(Dawn::App::Drains)
     end
@@ -118,7 +130,7 @@ describe Dawn::App do
     end
   end
 
-  context "#domains" do
+  describe "#domains" do
     it "should have domains" do
       expect(app.domains).to be_an_instance_of(Dawn::App::Domains)
     end
@@ -128,7 +140,7 @@ describe Dawn::App do
     end
   end
 
-  context "#releases" do
+  describe "#releases" do
     it "should have releases" do
       expect(app.releases).to be_an_instance_of(Dawn::App::Releases)
     end
@@ -138,16 +150,16 @@ describe Dawn::App do
     end
   end
 
-  context "#update" do
+  describe "#update" do
     it "should update 1 app" do
-      app = Dawn::App.find(name: "cookie-crushers")
+      app = subject.find(name: "cookie-crushers")
       app.update(app: { name: "bread-crushers" })
     end
   end
 
-  context "#destroy" do
+  describe "#destroy" do
     it "should destroy 1 app" do
-      app = Dawn::App.find(name: "bread-crushers")
+      app = subject.find(name: "bread-crushers")
       app.destroy(name: "bread-crushers")
     end
   end

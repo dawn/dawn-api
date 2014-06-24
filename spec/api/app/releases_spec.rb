@@ -1,31 +1,30 @@
-require_relative '../../api_spec_helper.rb'
+require 'api_spec_helper'
 
-describe Dawn::App::Releases do
-  before(:suite) do
-    Dawn::App.create(name: "releases-test-app")
-  end
+describe Dawn::App::Releases, :vcr do
+  subject { Dawn::App::Releases }
 
-  let(:app) { Dawn::App.find(name: "releases-test-app") }
-  let(:releases) { app.releases }
+  let(:app) { Dawn::App.find(name: "releases-test") }
+
+  it { should be_a Class }
 
   ###
   context "#all" do
+    subject { app.releases }
+
     it "should return all releases" do
-      releases.all
+      subject.all
     end
+
     it "should have only releases" do
-      releases.all.all? { |release| expect(release).to be_an_instance_of Dawn::Release }
+      subject.all.all? { |release| expect(release).to be_an_instance_of(Dawn::Release) }
     end
   end
 
   context "#create" do
-    it "should create a new release" do
-      releases.create
-    end
-  end
+    subject { app.releases }
 
-  ###
-  after(:suite) do
-    Dawn::App.find(name: "releases-test-app").destroy
+    it "should create a new release" do
+      subject.create
+    end
   end
 end

@@ -1,17 +1,21 @@
-require_relative '../api_spec_helper.rb'
+require 'api_spec_helper'
 
-describe Dawn::Account do
-  let(:account) { Dawn::Account.current }
+describe Dawn::Account, :vcr do
+  subject { Dawn::Account }
 
-  context ".current" do
+  it { should be_a Class }
+
+  describe ".current" do
     it "should retrieve current user account" do
       Dawn::Account.current
     end
   end
 
-  context "#update" do
+  describe "#update" do
+    subject { Dawn::Account.current }
+
     it "should update an account" do
-      account.update username: "HexenDaigen"
+      subject.update(account: { username: "MyNameIs" })
     end
   end
 end

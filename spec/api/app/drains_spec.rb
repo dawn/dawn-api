@@ -1,31 +1,30 @@
-require_relative '../../api_spec_helper.rb'
+require 'api_spec_helper'
 
-describe Dawn::App::Drains do
-  before(:suite) do
-    Dawn::App.create(name: "drains-test-app")
-  end
+describe Dawn::App::Drains, :vcr do
+  subject { Dawn::App::Drains }
 
-  let(:app) { Dawn::App.find(name: "drains-test-app") }
-  let(:drains) { app.drains }
+  let(:app) { Dawn::App.find(name: "drains-test") }
+
+  it { should be_a Class }
 
   ###
   context "#all" do
+    subject { app.drains }
+
     it "should return all drains" do
-      drains.all
+      subject.all
     end
+
     it "should have only drains" do
-      drains.all.all? { |drain| expect(drain).to be_an_instance_of Dawn::Drain }
+      subject.all.all? { |drain| expect(drain).to be_an_instance_of(Dawn::Drain) }
     end
   end
 
   context "#create" do
-    it "should create a new drain" do
-      drains.create
-    end
-  end
+    subject { app.drains }
 
-  ###
-  after(:suite) do
-    Dawn::App.find(name: "drains-test-app").destroy
+    it "should create a new drain" do
+      subject.create(drain: { url: "http://flush.it" })
+    end
   end
 end

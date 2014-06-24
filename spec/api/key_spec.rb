@@ -1,45 +1,54 @@
 require "sshkey"
-require_relative '../api_spec_helper.rb'
+require 'api_spec_helper'
 
-describe Dawn::Key do
+describe Dawn::Key, :vcr do
+  subject { Dawn::Key }
+
   let(:testkey) { Dawn::Key.create key: SSHKey.generate.ssh_public_key }
 
-  context ".create" do
+  it { should be_a Class }
+
+  describe ".create" do
     it "should create a new sshkey" do
-      Dawn::Key.create(key: SSHKey.generate.ssh_public_key)
+      subject.create(key: SSHKey.generate.ssh_public_key)
     end
+
     it "should conflict if sshkey exists" do
-      expect { Dawn::Key.create(key: testkey.key) }.to raise_error(Excon::Errors::UnprocessableEntity)
+      expect { subject.create(key: testkey.key) }.to raise_error(Excon::Errors::UnprocessableEntity)
     end
+
     it "should fail if sshkey is invalid" do
-      expect { Dawn::Key.create(key: "invalid key for the win") }.to raise_error(Excon::Errors::UnprocessableEntity)
+      expect { subject.create(key: "invalid key for the win") }.to raise_error(Excon::Errors::UnprocessableEntity)
     end
   end
 
-  context ".all" do
+  describe ".all" do
     it "should retrieve all user keys" do
-      Dawn::Key.all
+      subject.all
     end
+
     it "should have only keys" do
-      Dawn::Key.all.all? { |k| expect(k).to be_an_instance_of(Dawn::Key) }
+      subject.all.all? { |k| expect(k).to be_an_instance_of(Dawn::Key) }
     end
   end
 
-  context ".find" do
+  describe ".find" do
     it "should find a key by id" do
-      Dawn::Key.find(id: testkey.id)
+      subject.find(id: testkey.id)
     end
+
     it "should 404 if key does not exist" do
-      expect { Dawn::Key.find(id: -1) }.to raise_error(Excon::Errors::NotFound)
+      expect { subject.find(id: -1) }.to raise_error(Excon::Errors::NotFound)
     end
   end
 
-  context ".destroy" do
+  describe ".destroy" do
     it "should remove a key by id" do
-      Dawn::Key.destroy(id: testkey.id)
+      subject.destroy(id: testkey.id)
     end
+
     it "should 404 if key does not exist" do
-      expect { Dawn::Key.destroy(id: -1) }.to raise_error(Excon::Errors::NotFound)
+      expect { subject.destroy(id: -1) }.to raise_error(Excon::Errors::NotFound)
     end
   end
 end

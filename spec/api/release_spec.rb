@@ -1,18 +1,13 @@
-require_relative '../api_spec_helper.rb'
+require 'api_spec_helper'
 
-describe Dawn::Release do
-  let(:release) { Dawn::Release }
+describe Dawn::Release, :vcr do
+  subject { Dawn::Release }
 
-  context ".find" do
+  it { should be_a Class }
+
+  describe ".find" do
     it "should find 1 release by id" do
-      release.find id: 1
+      subject.find(id: 1)
     end
   end
-
-  ## releases cannot be destroyed
-  #context "#destroy" do
-  #  it "should destroy 1 release by id" do
-  #    release.destroy id: 1
-  #  end
-  #end
 end

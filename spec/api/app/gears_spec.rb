@@ -1,37 +1,38 @@
-require_relative '../../api_spec_helper.rb'
+require 'api_spec_helper'
 
-describe Dawn::App::Gears do
-  before(:suite) do
-    Dawn::App.create(name: "gears-test-app")
-  end
+describe Dawn::App::Gears, :vcr do
+  subject { Dawn::App::Gears }
 
-  let(:app) { Dawn::App.find(name: "gears-test-app") }
-  let(:gears) { app.gears }
+  let(:app) { Dawn::App.find(name: "gears-test") }
+
+  it { should be_a Class }
 
   ###
   context "#all" do
+    subject { app.gears }
+
     it "should return all gears" do
-      gears.all
+      subject.all
     end
+
     it "should have only gears" do
-      gears.all.all? { |gear| expect(gear).to be_an_instance_of Dawn::Gear }
+      subject.all.all? { |gear| expect(gear).to be_an_instance_of(Dawn::Gear) }
     end
   end
 
   context "#restart" do
+    subject { app.gears }
+
     it "should restart all gears" do
-      gears.restart
+      subject.restart
     end
   end
 
   context "#create" do
-    it "should create a new gear" do
-      gears.create
-    end
-  end
+    subject { app.gears }
 
-  ###
-  after(:suite) do
-    Dawn::App.find(name: "gears-test-app").destroy
+    it "should create a new gear" do
+      subject.create
+    end
   end
 end
