@@ -23,7 +23,7 @@ module Dawn
       end
 
       def create(options={})
-        options.fetch(:release)
+        #options.fetch(:release)
 
         Release.new(post(
           path: "/apps/#{app.id}/releases",

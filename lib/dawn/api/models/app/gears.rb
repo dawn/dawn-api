@@ -23,7 +23,7 @@ module Dawn
       end
 
       def create(options={})
-        options.fetch(:gear)
+        #options.fetch(:gear)
 
         Gear.new(post(
           path: "/apps/#{app.id}/gears",
