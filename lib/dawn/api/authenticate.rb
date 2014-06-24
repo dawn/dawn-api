@@ -33,13 +33,16 @@ module Dawn
 
   def self.request(options)
     Dawn.authenticate unless @connection
-    expects = options.delete(:expects)
     response = @connection.request(options)
     self.last_response_body = response.body
-    if expects && response.status != expects
-      raise Excon::Errors.status_error(options.merge(expects: expects), response)
-    end
     response
+  rescue Excon::Errors::HTTPStatusError => ex
+    self.last_response_body = ex.response.body
+    debug Time.now.strftime("%D %T")
+    debug options.inspect
+    debug self.last_response_body
+    debug "\n"
+    raise ex
   end
 
   def self.authenticate(options={})
