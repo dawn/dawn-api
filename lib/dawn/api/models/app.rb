@@ -24,7 +24,6 @@ module Dawn
     data_key :updated_at
     data_key :name
     data_key :formation
-    data_key :git
 
     def gears
       @gears ||= Gears.new self
