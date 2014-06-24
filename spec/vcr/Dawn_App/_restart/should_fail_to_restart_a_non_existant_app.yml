@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.dawn.dev/apps/-1/gears/restart
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 404
+      message: 
+    headers:
+      content-type:
+      - text/html
+      cache-control:
+      - no-cache
+      x-request-id:
+      - 399e7656-c0c8-4429-ad03-441c3540616b
+      x-runtime:
+      - '0.008834'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 22:00:13 GMT
+    body:
+      encoding: UTF-8
+      string: '{"id":"app.not_exist","message":"App (id: -1) does not exist"}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 22:00:33 GMT
+recorded_with: VCR 2.9.2

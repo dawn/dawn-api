@@ -1,0 +1,99 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.dawn.dev/apps/domains-test
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"fa385941ce7ac0ad8864e682bad181e4"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - be2b6190-c27c-4359-8206-f8b6f819feca
+      x-runtime:
+      - '0.018022'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 21:53:56 GMT
+    body:
+      encoding: UTF-8
+      string: '{"app":{"id":2,"created_at":"2014-06-24 18:36:05 UTC","updated_at":"2014-06-24
+        18:36:05 UTC","name":"domains-test","version":0,"env":{},"formation":{"web":"1"},"url":"domains-test.dawnapp.dev"}}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 21:54:16 GMT
+- request:
+    method: post
+    uri: http://api.dawn.dev/apps/2/domains
+    body:
+      encoding: UTF-8
+      string: '{"domain":{"url":"http://wearepeople.io"}}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"dd9ad6562072fa6337cd5dc6e54b7e4a"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 09be991b-f263-42fd-85d4-b3943502f6f0
+      x-runtime:
+      - '0.021063'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 21:54:12 GMT
+    body:
+      encoding: UTF-8
+      string: '{"domain":{"id":5,"created_at":"2014-06-24 21:54:12 UTC","updated_at":"2014-06-24
+        21:54:12 UTC","url":"http://wearepeople.io","app":{"app_id":2}}}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 21:54:32 GMT
+recorded_with: VCR 2.9.2

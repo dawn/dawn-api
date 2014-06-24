@@ -1,0 +1,98 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.dawn.dev/account/keys
+    body:
+      encoding: UTF-8
+      string: '{"key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDlcPe87tiqxkqKff/HSbdMvG7JhgJsCe8atTbBNLnrQwLWzV6LHCZ81fGLKXMaRisX6s9oR4rs/5K/t0Ofj1iKFdSRiwMxiDNR1UhnmmofTZNPp+ubyidoSGjxA0MvoToRd+OObXprQf/Aoo/UO5XVDyjguvzJOGWKU/S+K0YO7m28B+X1IKGAiHtOVvUA8WAfJmqlGPP/PiE4P4kBceyImiWR2nYKr03evo8cpbfHCQ3n8ieomO7T+0e6IS3GXCKHfkMsijcYDfk6K++ci9xCUUZDUr5IioQ8xVc/FT2sgDMGLadU0JZrV3W/XACY1hj7FkTN8+sB3nUAHQyz5d/d"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"63d39c4cf71f6530cbc81b1fd1f6f3aa"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 6060119e-a43d-44a4-af3b-d8704c27fb09
+      x-runtime:
+      - '0.016443'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 22:07:31 GMT
+    body:
+      encoding: UTF-8
+      string: '{"key":{"id":5,"created_at":"2014-06-24 22:07:31 UTC","updated_at":"2014-06-24
+        22:07:31 UTC","key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDlcPe87tiqxkqKff/HSbdMvG7JhgJsCe8atTbBNLnrQwLWzV6LHCZ81fGLKXMaRisX6s9oR4rs/5K/t0Ofj1iKFdSRiwMxiDNR1UhnmmofTZNPp+ubyidoSGjxA0MvoToRd+OObXprQf/Aoo/UO5XVDyjguvzJOGWKU/S+K0YO7m28B+X1IKGAiHtOVvUA8WAfJmqlGPP/PiE4P4kBceyImiWR2nYKr03evo8cpbfHCQ3n8ieomO7T+0e6IS3GXCKHfkMsijcYDfk6K++ci9xCUUZDUr5IioQ8xVc/FT2sgDMGLadU0JZrV3W/XACY1hj7FkTN8+sB3nUAHQyz5d/d","fingerprint":"0e:86:81:33:f9:74:70:9b:ec:b6:dc:7a:23:5c:12:3f"}}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 22:07:51 GMT
+- request:
+    method: delete
+    uri: http://api.dawn.dev/account/keys/5
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"ffc3660def67aa84ab18934bf5dae1d3"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 436a6ce0-dd86-47c2-a441-5f1cfd4f1c94
+      x-runtime:
+      - '0.011826'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 22:07:32 GMT
+    body:
+      encoding: UTF-8
+      string: '{"message":"key removed successfully"}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 22:07:52 GMT
+recorded_with: VCR 2.9.2

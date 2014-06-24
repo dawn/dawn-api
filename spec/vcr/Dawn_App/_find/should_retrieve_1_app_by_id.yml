@@ -1,0 +1,111 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.dawn.dev/apps
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"684654c89bd2787971ad75cea0a8adbc"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 324a5a80-6011-4a2a-904f-17d3be0638d5
+      x-runtime:
+      - '0.064641'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 21:59:24 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"app":{"id":2,"created_at":"2014-06-24 18:36:05 UTC","updated_at":"2014-06-24
+        18:36:05 UTC","name":"domains-test","version":0,"env":{},"formation":{"web":"1"},"url":"domains-test.dawnapp.dev"}},{"app":{"id":3,"created_at":"2014-06-24
+        18:36:06 UTC","updated_at":"2014-06-24 18:36:06 UTC","name":"domain-test","version":0,"env":{},"formation":{"web":"1"},"url":"domain-test.dawnapp.dev"}},{"app":{"id":4,"created_at":"2014-06-24
+        18:36:11 UTC","updated_at":"2014-06-24 18:36:11 UTC","name":"drains-test","version":0,"env":{},"formation":{"web":"1"},"url":"drains-test.dawnapp.dev"}},{"app":{"id":5,"created_at":"2014-06-24
+        18:36:12 UTC","updated_at":"2014-06-24 18:36:12 UTC","name":"drain-test","version":0,"env":{},"formation":{"web":"1"},"url":"drain-test.dawnapp.dev"}},{"app":{"id":6,"created_at":"2014-06-24
+        18:36:17 UTC","updated_at":"2014-06-24 18:36:17 UTC","name":"gears-test","version":0,"env":{},"formation":{"web":"1"},"url":"gears-test.dawnapp.dev"}},{"app":{"id":7,"created_at":"2014-06-24
+        18:36:18 UTC","updated_at":"2014-06-24 18:36:18 UTC","name":"gear-test","version":0,"env":{},"formation":{"web":"1"},"url":"gear-test.dawnapp.dev"}},{"app":{"id":8,"created_at":"2014-06-24
+        18:36:20 UTC","updated_at":"2014-06-24 18:36:20 UTC","name":"releases-test","version":0,"env":{},"formation":{"web":"1"},"url":"releases-test.dawnapp.dev"}},{"app":{"id":9,"created_at":"2014-06-24
+        18:36:20 UTC","updated_at":"2014-06-24 18:36:20 UTC","name":"release-test","version":0,"env":{},"formation":{"web":"1"},"url":"release-test.dawnapp.dev"}},{"app":{"id":10,"created_at":"2014-06-24
+        18:36:22 UTC","updated_at":"2014-06-24 18:36:22 UTC","name":"env-test","version":0,"env":{},"formation":{"web":"1"},"url":"env-test.dawnapp.dev"}},{"app":{"id":11,"created_at":"2014-06-24
+        18:39:55 UTC","updated_at":"2014-06-24 18:39:55 UTC","name":"high-morse-82","version":0,"env":{},"formation":{"web":"1"},"url":"high-morse-82.dawnapp.dev"}},{"app":{"id":14,"created_at":"2014-06-24
+        18:53:16 UTC","updated_at":"2014-06-24 18:53:16 UTC","name":"jovial-pike-55","version":0,"env":{},"formation":{"web":"1"},"url":"jovial-pike-55.dawnapp.dev"}},{"app":{"id":15,"created_at":"2014-06-24
+        19:08:41 UTC","updated_at":"2014-06-24 19:08:41 UTC","name":"app-test","version":0,"env":{},"formation":{"web":"1"},"url":"app-test.dawnapp.dev"}},{"app":{"id":16,"created_at":"2014-06-24
+        21:59:06 UTC","updated_at":"2014-06-24 21:59:06 UTC","name":"cookie-crushers","version":0,"env":{},"formation":{"web":"1"},"url":"cookie-crushers.dawnapp.dev"}}]'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 21:59:44 GMT
+- request:
+    method: get
+    uri: http://api.dawn.dev/apps/2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"fa385941ce7ac0ad8864e682bad181e4"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 50196700-4f0b-435a-bd95-b40421a80d80
+      x-runtime:
+      - '0.056647'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 21:59:32 GMT
+    body:
+      encoding: UTF-8
+      string: '{"app":{"id":2,"created_at":"2014-06-24 18:36:05 UTC","updated_at":"2014-06-24
+        18:36:05 UTC","name":"domains-test","version":0,"env":{},"formation":{"web":"1"},"url":"domains-test.dawnapp.dev"}}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 21:59:53 GMT
+recorded_with: VCR 2.9.2

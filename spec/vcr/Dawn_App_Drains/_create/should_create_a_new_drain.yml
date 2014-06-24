@@ -1,0 +1,99 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.dawn.dev/apps/drains-test
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"77aecdd933f446a235e5e811bbdfe61e"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - e296ff33-ecec-4c50-a529-20df420d0a1f
+      x-runtime:
+      - '0.016156'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 21:54:26 GMT
+    body:
+      encoding: UTF-8
+      string: '{"app":{"id":4,"created_at":"2014-06-24 18:36:11 UTC","updated_at":"2014-06-24
+        18:36:11 UTC","name":"drains-test","version":0,"env":{},"formation":{"web":"1"},"url":"drains-test.dawnapp.dev"}}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 21:54:46 GMT
+- request:
+    method: post
+    uri: http://api.dawn.dev/apps/4/drains
+    body:
+      encoding: UTF-8
+      string: '{"drain":{"url":"http://flush.it"}}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"3ea6da5df6f853ffd19e3f8fea9e8d6f"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 0729ca81-e6df-449f-b10c-f009e738d81a
+      x-runtime:
+      - '0.057579'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 21:54:35 GMT
+    body:
+      encoding: UTF-8
+      string: '{"drain":{"id":1,"created_at":"2014-06-24 21:54:35 UTC","updated_at":"2014-06-24
+        21:54:35 UTC","url":"http://flush.it","token":"d.cca22675-fcfc-4d3e-b8b6-2923a5280cde","app":{"app_id":4}}}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 21:54:56 GMT
+recorded_with: VCR 2.9.2

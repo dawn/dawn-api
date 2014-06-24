@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: patch
+    uri: http://api.dawn.dev/apps/some-app
+    body:
+      encoding: UTF-8
+      string: '{"app":{"name":"some-app-thing"}}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 404
+      message: 
+    headers:
+      content-type:
+      - text/html
+      cache-control:
+      - no-cache
+      x-request-id:
+      - d8ee6035-bbba-4b06-a1d3-328c0274230d
+      x-runtime:
+      - '0.008360'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 22:00:05 GMT
+    body:
+      encoding: UTF-8
+      string: '{"id":"app.not_exist","message":"App (id: some-app) does not exist"}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 22:00:26 GMT
+recorded_with: VCR 2.9.2

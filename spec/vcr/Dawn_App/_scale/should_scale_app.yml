@@ -1,0 +1,98 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.dawn.dev/apps/cookie-crushers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"70f18583ad50884e483281cb10619f25"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 35e1aab0-f1bd-4497-9673-f72ddb2ade12
+      x-runtime:
+      - '0.014730'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 22:01:41 GMT
+    body:
+      encoding: UTF-8
+      string: '{"app":{"id":16,"created_at":"2014-06-24 21:59:06 UTC","updated_at":"2014-06-24
+        21:59:06 UTC","name":"cookie-crushers","version":0,"env":{},"formation":{"web":"1"},"url":"cookie-crushers.dawnapp.dev"}}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 22:02:01 GMT
+- request:
+    method: post
+    uri: http://api.dawn.dev/apps/16/scale
+    body:
+      encoding: UTF-8
+      string: '{"app":{"formation":{"web":2}}}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"c61ca4cc37cdd20e1ca0b6b0544c6993"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 05cc6c54-3aed-48ff-b97c-c001b420de71
+      x-runtime:
+      - '0.018132'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 22:01:42 GMT
+    body:
+      encoding: UTF-8
+      string: '{"formation":{"web":"2"}}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 22:02:03 GMT
+recorded_with: VCR 2.9.2

@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.dawn.dev/apps/cookie-crushers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"831f4f06614ad204a50ca98c6f6f85ca"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 0e28931d-d436-4956-828e-53c69e661893
+      x-runtime:
+      - '0.021976'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 22:01:46 GMT
+    body:
+      encoding: UTF-8
+      string: '{"app":{"id":16,"created_at":"2014-06-24 21:59:06 UTC","updated_at":"2014-06-24
+        22:01:42 UTC","name":"cookie-crushers","version":0,"env":{},"formation":{"web":"2"},"url":"cookie-crushers.dawnapp.dev"}}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 22:02:06 GMT
+recorded_with: VCR 2.9.2

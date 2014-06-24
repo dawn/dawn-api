@@ -1,0 +1,99 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.dawn.dev/account
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"a0c5e72c41d0b8b3f3a32e7394ba9ae5"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 965916e8-ea4d-4937-bce9-3380478c68e0
+      x-runtime:
+      - '0.008783'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 21:53:23 GMT
+    body:
+      encoding: UTF-8
+      string: '{"user":{"id":2,"created_at":"2014-06-24 18:34:17 UTC","updated_at":"2014-06-24
+        18:34:17 UTC","username":"IceDragon","email":"mistdragon100@gmail.com","api_key":"aF3EG3XcumzJmKpaHyB9"}}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 21:53:43 GMT
+- request:
+    method: patch
+    uri: http://api.dawn.dev/account
+    body:
+      encoding: UTF-8
+      string: '{"account":{"username":"MyNameIs"}}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"aa3ee9fa5443773c753ba9766a7e2e9b"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 9dec4167-d111-4f34-8c54-fa149baa197a
+      x-runtime:
+      - '0.015168'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 21:53:26 GMT
+    body:
+      encoding: UTF-8
+      string: '{"user":{"id":2,"created_at":"2014-06-24 18:34:17 UTC","updated_at":"2014-06-24
+        21:53:26 UTC","username":"MyNameIs","email":"mistdragon100@gmail.com","api_key":"aF3EG3XcumzJmKpaHyB9"}}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 21:53:47 GMT
+recorded_with: VCR 2.9.2

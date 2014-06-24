@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.dawn.dev/account/keys
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"53245c1c31065c512fafe2110fd8d3e4"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 91805416-0882-4165-9f35-da2f157b6cd1
+      x-runtime:
+      - '0.014113'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 22:05:51 GMT
+    body:
+      encoding: UTF-8
+      string: '[{"key":{"id":2,"created_at":"2014-06-24 22:04:42 UTC","updated_at":"2014-06-24
+        22:04:42 UTC","key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDALiPQc0GAmHQEBfDA430l6dLP5jMnJ6FcbAi103xtGAOAiWRVcBPFLkGXx2MRWZGHry3QW8hEIOgxsHOxa9/0qIiR1647h6ZenA6SJeBSntEZc13lRzyypLL45acNffcEsNVGCWx/A3HJsNyN4q7UmpbSEIwIIyRgRf0YIeDqvL3TqnwV29RGY9cl84ATu+7Wye2g6AG60qTXZONqldjM1bxzPi6iq4Alxt937kH8nDs6jvsYe+gjoGgrhjIhYPucukeuHJBRW6dzTvQDBqOB2kTSAtq5hbSc4PbWuHGR7Zk/QsctC7nX9O2V+oudGO0RlPqc714g/ntbV4QdTqrz","fingerprint":"9e:da:d1:6f:06:a2:fa:c9:a3:e3:ec:f0:0b:bc:5b:68"}},{"key":{"id":3,"created_at":"2014-06-24
+        22:04:46 UTC","updated_at":"2014-06-24 22:04:46 UTC","key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzf9Z9gEOg9PJvhaZOZzuan6g2q9xUaqwNhiKtWPXA551NZNXk+tIYwYVv/aWY2T6+6KyeeFIzXJmUO9EJCPh8fmirGKrmdxGCFgkv2eK8bMJ+gVkPUoHbEqP5lzVTr+pB1l0wGIOn+G10Rs30vqvEz2sWUAJEWNksAZmlUOgubBpHhSYpoUyj8uaYG8/E2Gm0MgaCJHyT15lyavc8crdpm8NZbI8x3nHTrv/JwZaqQwTWJ6Am7g5WfYmeqr3ThJh/ODlaP7VnM7DJqnkfP8NuirV8lkoHe3qvlRcRMGDpikuvFKiI4BcHUy7E+R+Vl6MnPTb+4TY2uzLcXXXMBSiH","fingerprint":"7b:e3:80:47:5a:13:45:34:2c:0f:3d:ce:28:53:b5:08"}}]'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 22:06:11 GMT
+recorded_with: VCR 2.9.2

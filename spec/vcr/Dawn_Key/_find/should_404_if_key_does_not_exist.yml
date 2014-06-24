@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.dawn.dev/account/keys/-1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 404
+      message: 
+    headers:
+      content-type:
+      - text/html
+      cache-control:
+      - no-cache
+      x-request-id:
+      - f1996d47-f69f-4bf5-8a0b-4ba88ed5efc2
+      x-runtime:
+      - '0.008153'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 22:07:30 GMT
+    body:
+      encoding: UTF-8
+      string: '{"id":"key.not_exist","message":"Key (id: -1) does not exist"}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 22:07:50 GMT
+recorded_with: VCR 2.9.2

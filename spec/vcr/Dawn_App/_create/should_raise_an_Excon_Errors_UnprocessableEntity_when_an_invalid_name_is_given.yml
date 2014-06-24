@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.dawn.dev/apps
+    body:
+      encoding: UTF-8
+      string: '{"app":{"name":"ThaTunaCorps"}}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 422
+      message: 
+    headers:
+      content-type:
+      - text/html
+      cache-control:
+      - no-cache
+      x-request-id:
+      - efa840bc-45f3-4a93-bbb5-633bb1dd0978
+      x-runtime:
+      - '0.051069'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 21:59:22 GMT
+    body:
+      encoding: UTF-8
+      string: '{"id":"app.save.fail","message":"App (name: ThaTunaCorps) saving has
+        failed","errors":{"name":"is invalid"}}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 21:59:42 GMT
+recorded_with: VCR 2.9.2

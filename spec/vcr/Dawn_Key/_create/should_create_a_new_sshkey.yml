@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api.dawn.dev/account/keys
+    body:
+      encoding: UTF-8
+      string: '{"key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDALiPQc0GAmHQEBfDA430l6dLP5jMnJ6FcbAi103xtGAOAiWRVcBPFLkGXx2MRWZGHry3QW8hEIOgxsHOxa9/0qIiR1647h6ZenA6SJeBSntEZc13lRzyypLL45acNffcEsNVGCWx/A3HJsNyN4q7UmpbSEIwIIyRgRf0YIeDqvL3TqnwV29RGY9cl84ATu+7Wye2g6AG60qTXZONqldjM1bxzPi6iq4Alxt937kH8nDs6jvsYe+gjoGgrhjIhYPucukeuHJBRW6dzTvQDBqOB2kTSAtq5hbSc4PbWuHGR7Zk/QsctC7nX9O2V+oudGO0RlPqc714g/ntbV4QdTqrz"}'
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - dawn/0.11.0
+      X-Ruby-Version:
+      - 2.1.2
+      X-Ruby-Platform:
+      - x86_64-linux
+      Authorization:
+      - Basic SWNlRHJhZ29uOmFGM0VHM1hjdW16Sm1LcGFIeUI5
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - text/html
+      etag:
+      - '"adc188c3729eb744aae6c2fbcb827eb3"'
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 067366ec-df3b-4c43-b4ee-01048b94e525
+      x-runtime:
+      - '0.033145'
+      transfer-encoding:
+      - ''
+      connection:
+      - TE, close
+      Date:
+      - Tue, 24 Jun 2014 22:04:42 GMT
+    body:
+      encoding: UTF-8
+      string: '{"key":{"id":2,"created_at":"2014-06-24 22:04:42 UTC","updated_at":"2014-06-24
+        22:04:42 UTC","key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDALiPQc0GAmHQEBfDA430l6dLP5jMnJ6FcbAi103xtGAOAiWRVcBPFLkGXx2MRWZGHry3QW8hEIOgxsHOxa9/0qIiR1647h6ZenA6SJeBSntEZc13lRzyypLL45acNffcEsNVGCWx/A3HJsNyN4q7UmpbSEIwIIyRgRf0YIeDqvL3TqnwV29RGY9cl84ATu+7Wye2g6AG60qTXZONqldjM1bxzPi6iq4Alxt937kH8nDs6jvsYe+gjoGgrhjIhYPucukeuHJBRW6dzTvQDBqOB2kTSAtq5hbSc4PbWuHGR7Zk/QsctC7nX9O2V+oudGO0RlPqc714g/ntbV4QdTqrz","fingerprint":"9e:da:d1:6f:06:a2:fa:c9:a3:e3:ec:f0:0b:bc:5b:68"}}'
+    http_version: 
+  recorded_at: Tue, 24 Jun 2014 22:05:02 GMT
+recorded_with: VCR 2.9.2
