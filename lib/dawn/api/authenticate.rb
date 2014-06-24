@@ -40,7 +40,7 @@ module Dawn
     self.last_response_body = ex.response.body
     debug Time.now.strftime("%D %T")
     debug options.inspect
-    debug self.last_response_body
+    debug ex.response.body
     debug "\n"
     raise ex
   end
