@@ -14,6 +14,7 @@ module Dawn
             @obj.send sym, *args, &block
           rescue => ex
             self.last_exception = ex
+            false
           end
         else
           @obj.method_missing sym, *args, &block
