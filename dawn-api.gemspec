@@ -26,5 +26,6 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.files = ["README.md", "CHANGELOG.md"] +
             Dir.glob('lib/**/*') +
+            #Dir.glob('spec/**/*') +
             Dir.glob('test/**/*')
 end
