@@ -4,12 +4,6 @@ module Dawn
   class Key
     include BaseApi
 
-    attr_reader :data
-
-    def initialize(data)
-      @data = data
-    end
-
     # @type [String]
     data_key :id, write: false
     # @type [Integer]
@@ -20,6 +14,10 @@ module Dawn
     data_key :fingerprint, write: false
     # @type [String]
     data_key :key, write: false
+
+    def initialize(data)
+      @data = data
+    end
 
     def destroy(options={})
       self.class.destroy(options.merge(id: id))
@@ -57,10 +55,6 @@ module Dawn
         path: "/account/keys/#{id}",
         query: options
       )
-    end
-
-    class << self
-      private :new
     end
   end
 end
