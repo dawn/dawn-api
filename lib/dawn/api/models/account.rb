@@ -32,6 +32,10 @@ module Dawn
       )["user"]
     end
 
+    def save
+      update(account: @data)
+    end
+
     def self.current(options={})
       new get(
         path: "/account",

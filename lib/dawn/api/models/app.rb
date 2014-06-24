@@ -58,6 +58,10 @@ module Dawn
       )["app"]
     end
 
+    def save
+      update(app: @data)
+    end
+
     def destroy(options={})
       self.class.destroy(options.merge(id: id))
     end
