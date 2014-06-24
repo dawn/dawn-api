@@ -4,14 +4,7 @@ module Dawn
   class Drain
     include BaseApi
 
-    attr_reader :data
     attr_writer :app
-
-    def initialize(data)
-      @app = nil
-      @data = data
-    end
-
     # @type [String]
     data_key :id, write: false
     # @type [Integer]
@@ -22,6 +15,11 @@ module Dawn
     data_key :url, write: false
     # @type [String]
     data_key :app_id, path: "app/id", write: false
+
+    def initialize(data)
+      @app = nil
+      @data = data
+    end
 
     def app
       @app ||= App.find(id: app_id)
@@ -34,15 +32,8 @@ module Dawn
       )["drain"]
     end
 
-    def destroy(options)
+    def destroy(options={})
       Drain.destroy(options.merge(id: id))
-    end
-
-    def self.all(options={})
-      get(
-        path: "/drains",
-        query: options
-      ).map { |hsh| new hsh["drain"] }
     end
 
     def self.find(options={})
