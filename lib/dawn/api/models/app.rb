@@ -10,14 +10,7 @@ module Dawn
   class App
     include BaseApi
 
-    attr_reader :data
     attr_reader :env
-
-    def initialize(hsh)
-      @data = hsh
-      @env = Env.new(self, @data.delete("env"))
-    end
-
     # @type [String]
     data_key :id, write: false
     # @type [Integer]
@@ -28,6 +21,11 @@ module Dawn
     data_key :name, write: false
     # @type [Hash<String, Integer>]
     data_key :formation
+
+    def initialize(data)
+      @data = data
+      @data["env"] = @env = Env.new(self, @data.delete("env"))
+    end
 
     def gears
       @gears ||= Gears.new self
@@ -50,6 +48,7 @@ module Dawn
         path: "/apps/#{id}",
         query: options
       )["app"]
+      self
     end
 
     def update(options={})
@@ -59,6 +58,7 @@ module Dawn
         path: "/apps/#{id}",
         body: options.to_json
       )["app"]
+      self
     end
 
     def save
