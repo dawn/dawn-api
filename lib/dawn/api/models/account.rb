@@ -4,10 +4,6 @@ module Dawn
   class Account
     include BaseApi
 
-    def initialize(hsh)
-      @data = hsh
-    end
-
     # @type [String]
     data_key :id, write: false
     # @type [Integer]
@@ -20,6 +16,10 @@ module Dawn
     data_key :email
     # @type [String]
     data_key :api_key, write: false
+
+    def initialize(data)
+      @data = data
+    end
 
     def refresh(options={})
       @data = get(
@@ -35,6 +35,7 @@ module Dawn
         path: "/account",
         body: options.to_json
       )["user"]
+      self
     end
 
     def save
