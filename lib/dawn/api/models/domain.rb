@@ -4,14 +4,7 @@ module Dawn
   class Domain
     include BaseApi
 
-    attr_reader :data
     attr_writer :app
-
-    def initialize(data)
-      @app = nil
-      @data = data
-    end
-
     # @type [String]
     data_key :id, write: false
     # @type [Integer]
@@ -23,6 +16,11 @@ module Dawn
     # @type [String]
     data_key :app_id, path: "app/id", write: false
 
+    def initialize(data)
+      @app = nil
+      @data = data
+    end
+
     def app
       @app ||= App.find(id: app_id)
     end
@@ -32,6 +30,7 @@ module Dawn
         path: "/domains/#{id}",
         query: options
       )["domain"]
+      self
     end
 
     def destroy(options={})
