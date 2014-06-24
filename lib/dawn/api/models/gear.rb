@@ -4,14 +4,7 @@ module Dawn
   class Gear
     include BaseApi
 
-    attr_reader :data
     attr_writer :app
-
-    def initialize(data)
-      @app = nil
-      @data = data
-    end
-
     # @type [String]
     data_key :id, write: false
     # @type [Integer]
@@ -29,6 +22,11 @@ module Dawn
     # @type [String]
     data_key :app_id, path: "app/id", write: false
 
+    def initialize(data)
+      @app = nil
+      @data = data
+    end
+
     def app
       @app ||= App.find(id: app_id)
     end
@@ -38,21 +36,15 @@ module Dawn
         path: "/gears/#{id}",
         query: options
       )["gear"]
+      self
     end
 
     def restart(options={})
       self.class.restart(options.merge(id: id))
     end
 
-    def destroy(options)
+    def destroy(options={})
       self.class.destroy(options.merge(id: id))
-    end
-
-    def self.all(options={})
-      get(
-        path: "/gears",
-        query: options
-      ).map { |d| new d["gear"] }
     end
 
     def self.find(options)
@@ -64,8 +56,8 @@ module Dawn
       )["gear"]
     end
 
-    def self.restart(options={})
-      self.class.restart(options.merge(id: id))
+    def self.restart(options)
+      id = id_param(options)
 
       post(
         path: "/gears/#{id}/restart",
