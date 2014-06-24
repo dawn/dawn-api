@@ -1,7 +1,7 @@
 require 'dawn/api/base_api'
 
-module Dawn
-  class Account
+module Dawn #:nodoc:
+  class Account #:nodoc:
     include BaseApi
 
     # @type [String]
@@ -17,17 +17,29 @@ module Dawn
     # @type [String]
     data_key :api_key, write: false
 
+    ###
+    # @param [Hash] data
+    ###
     def initialize(data)
       @data = data
     end
 
+    ###
+    # @param [Hash] options
+    # @return [self]
+    ###
     def refresh(options={})
       @data = get(
         path: "/account",
         query: options
       )["user"]
+      self
     end
 
+    ###
+    # @param [Hash] options
+    # @return [self]
+    ###
     def update(options={})
       options.fetch(:account)
 
@@ -38,10 +50,18 @@ module Dawn
       self
     end
 
+    ###
+    # Using the currently stored @data, #update self
+    # @return [self]
+    ###
     def save
       update(account: @data)
     end
 
+    ###
+    # @param [Hash] data
+    # @return [Dawn::Account]
+    ###
     def self.current(options={})
       new get(
         path: "/account",

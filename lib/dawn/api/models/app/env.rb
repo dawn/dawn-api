@@ -1,8 +1,9 @@
 require 'dawn/api/base_api'
 
-module Dawn
-  class App
-    class Env < Hash
+module Dawn #:nodoc:
+  class App #:nodoc:
+    class Env < Hash #:nodoc:
+      # horrible hack to restore Hash#delete
       alias :__delete__ :delete
       include BaseApi
       alias :api_delete :delete
@@ -12,12 +13,19 @@ module Dawn
       # @type [Dawn::App]
       attr_reader :app
 
+      ###
+      # @param [Dawn::App] app
+      # @param [Hash] data
+      ###
       def initialize(app, data)
         @app = app
         super()
         replace(data)
       end
 
+      ###
+      # @param [Hash] options
+      ###
       def refresh(options={})
         replace get(
           path: "/apps/#{app.id}/env",
@@ -25,6 +33,9 @@ module Dawn
         )["env"]
       end
 
+      ###
+      # @param [Hash] options
+      ###
       def save(options={})
         replace post(
           path: "/apps/#{app.id}/env",

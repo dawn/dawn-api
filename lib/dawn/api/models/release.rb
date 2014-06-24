@@ -1,9 +1,10 @@
 require 'dawn/api/base_api'
 
-module Dawn
-  class Release
+module Dawn #:nodoc:
+  class Release #:nodoc:
     include BaseApi
 
+    # @type [Dawn::App]
     attr_writer :app
     # @type [String]
     data_key :id, write: false
@@ -16,15 +17,24 @@ module Dawn
     # @type [String]
     data_key :app_id, path: "app/id", write: false
 
+    ###
+    # @param [Hash] data
+    ###
     def initialize(data)
       @app = nil
       @data = data
     end
 
+    ###
+    # @return [Dawn::App]
+    ###
     def app
       @app ||= App.find(id: app_id)
     end
 
+    ###
+    # @return [self]
+    ###
     def refresh
       @data = get(
         path: "/releases/#{id}",
@@ -33,6 +43,10 @@ module Dawn
       self
     end
 
+    ###
+    # @param [Hash] options
+    # @return [Array<Dawn::Release>]
+    ###
     def self.all(options={})
       get(
         path: "/releases",
@@ -40,6 +54,10 @@ module Dawn
       ).map { |hsh| new hsh["release"] }
     end
 
+    ###
+    # @param [Hash] options
+    # @return [Dawn::Release]
+    ###
     def self.find(options={})
       id = id_param(options)
 

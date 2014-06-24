@@ -1,9 +1,10 @@
 require 'dawn/api/base_api'
 
-module Dawn
-  class Domain
+module Dawn #:nodoc:
+  class Domain #:nodoc:
     include BaseApi
 
+    # @type [Dawn::App]
     attr_writer :app
     # @type [String]
     data_key :id, write: false
@@ -16,15 +17,24 @@ module Dawn
     # @type [String]
     data_key :app_id, path: "app/id", write: false
 
+    ###
+    # @param [Hash] data
+    ###
     def initialize(data)
       @app = nil
       @data = data
     end
 
+    ###
+    # @return [Dawn::App]
+    ###
     def app
       @app ||= App.find(id: app_id)
     end
 
+    ###
+    # @return [self]
+    ###
     def refresh
       @data = get(
         path: "/domains/#{id}",
@@ -33,10 +43,17 @@ module Dawn
       self
     end
 
+    ###
+    # @param [Hash] options
+    # @return [Void]
+    ###
     def destroy(options={})
       self.class.destroy(options.merge(id: id))
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def self.id_param(options)
       id = options.delete(:id) ||
       options.delete(:name) ||
@@ -45,6 +62,9 @@ module Dawn
       raise
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def self.find(options)
       id = id_param(options)
 
@@ -54,6 +74,9 @@ module Dawn
       )["domain"]
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def self.destroy(options)
       id = id_param(options)
 

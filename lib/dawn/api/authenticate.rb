@@ -3,8 +3,10 @@ require 'base64'
 require 'excon'
 require 'netrc'
 
-module Dawn
-
+module Dawn #:nodoc:
+  ###
+  # Default request header
+  ###
   HEADERS = {
     'Accept'                => 'application/json',
     'Content-Type'          => 'application/json',
@@ -27,10 +29,19 @@ module Dawn
     attr_accessor :log
   end
 
+  ###
+  # wrapper method for @log.puts
+  # This method will do nothing if log is nil or false
+  # @param [*] args
+  # @param [&] block
+  ###
   def self.debug(*args, &block)
     @log && @log.puts(*args, &block)
   end
 
+  ###
+  # @param [Hash] options
+  ###
   def self.request(options)
     Dawn.authenticate unless @connection
     response = @connection.request(options)
@@ -45,6 +56,14 @@ module Dawn
     raise ex
   end
 
+  ###
+  # @overload .authenticate
+  #   login using netrc
+  # @overload .authenticate(options)
+  #   Expects that options includes username and password keys, else defaults
+  #   to netrc login
+  # @param [Hash] options
+  ###
   def self.authenticate(options={})
     options = OPTIONS.merge(host: dawn_api_host, scheme: dawn_scheme).merge(options)
     options[:headers] = options[:headers].merge(HEADERS)
@@ -81,5 +100,4 @@ module Dawn
     )
     @connection = Excon.new "#{options[:scheme]}://#{options[:host]}", headers: @headers
   end
-
 end

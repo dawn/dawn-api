@@ -1,9 +1,12 @@
 require 'dawn/api/base_api'
 
-module Dawn
-  class User
+module Dawn #:nodoc:
+  class User #:nodoc:
     include BaseApi
 
+    ###
+    # @param [Hash] options
+    ###
     def self.login(options={})
       post(
         path: '/login',

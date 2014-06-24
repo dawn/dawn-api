@@ -1,7 +1,7 @@
 require 'dawn/api/base_api'
 
-module Dawn
-  class Key
+module Dawn #:nodoc:
+  class Key #:nodoc:
     include BaseApi
 
     # @type [String]
@@ -15,14 +15,24 @@ module Dawn
     # @type [String]
     data_key :key, write: false
 
+    ###
+    # @param [Hash] data
+    ###
     def initialize(data)
       @data = data
     end
 
+    ###
+    # @return [Void]
+    ###
     def destroy(options={})
       self.class.destroy(options.merge(id: id))
     end
 
+    ###
+    # @param [Hash] options
+    # @return [Dawn::Key]
+    ###
     def self.create(options={})
       options.fetch(:key)
 
@@ -32,6 +42,10 @@ module Dawn
       )["key"]
     end
 
+    ###
+    # @param [Hash] options
+    # @return [Array<Dawn::Key>]
+    ###
     def self.all(options={})
       get(
         path: '/account/keys',
@@ -39,6 +53,10 @@ module Dawn
       ).map { |hsh| new hsh["key"] }
     end
 
+    ###
+    # @param [Hash] options
+    # @return [Dawn::Key]
+    ###
     def self.find(options={})
       id = id_param(options)
 
@@ -48,6 +66,9 @@ module Dawn
       )["key"]
     end
 
+    ###
+    # @return [Void]
+    ###
     def self.destroy(options={})
       id = id_param(options)
 

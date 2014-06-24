@@ -1,6 +1,8 @@
-module Dawn
-  module API
-
+module Dawn #:nodoc:
+  module API #:nodoc:
+    ###
+    # Verifies that the server is running.
+    ###
     def self.health_check
       Dawn.request(
         expects: 200,
@@ -8,6 +10,5 @@ module Dawn
         path: "/healthcheck"
       )
     end
-
   end
 end

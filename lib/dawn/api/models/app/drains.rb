@@ -1,26 +1,38 @@
 require 'dawn/api/base_api'
 require 'dawn/api/models/drain'
 
-module Dawn
-  class App
-    class Drains
+module Dawn #:nodoc:
+  class App #:nodoc:
+    class Drains #:nodoc:
       include BaseApi, Enumerable
 
       # @type [Dawn::App]
       attr_reader :app
 
+      ###
+      # @param [Dawn::App] app
+      ###
       def initialize(app)
         @app = app
       end
 
+      ###
+      # @return [Array<Dawn::Drain>]
+      ###
       def to_a
         all
       end
 
+      ###
+      # @overload each { |drain| do_stuff_with_drain }
+      ###
       def each(&block)
         all.each(&block)
       end
 
+      ###
+      # @return [Dawn::Drain]
+      ###
       def create(options={})
         options.fetch(:drain)
 
@@ -30,6 +42,9 @@ module Dawn
         )["drain"]).tap { |d| d.app = @app }
       end
 
+      ###
+      # @return [Array<Dawn::Drain>]
+      ###
       def all(options={})
         get(
           path: "/apps/#{app.id}/drains",
@@ -37,6 +52,9 @@ module Dawn
         ).map { |hsh| Drain.new(hsh["drain"]).tap { |d| d.app = @app } }
       end
 
+      ###
+      # @return [Dawn::Drain]
+      ###
       def find(options={})
         Drain.find(options).tap { |d| d.app = @app }
       end

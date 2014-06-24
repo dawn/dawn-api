@@ -2,9 +2,16 @@ require 'dawn/api/authenticate'
 require 'dawn/api/safe/base_api'
 require 'json'
 
-module Dawn
-  module BaseApi
+module Dawn #:nodoc:
+  module BaseApi #:nodoc:
+    ###
+    # Base request extension module
+    ###
     module RequestExtension
+      ###
+      # Wrapper function around Dawn.request
+      # @param [Hash] options
+      ###
       def request(options)
         options[:expects] = 200 unless options.key?(:expects)
         JSON.load Dawn.request(options).body
@@ -15,16 +22,33 @@ module Dawn
       end
     end
 
-    module ClassExtension
+    module ClassExtension #:nodoc:
       include RequestExtension
 
+      ###
+      # Strips a valid id parameter from the given options.
+      # This method is normally overwritten in each subclass to suite their
+      # id needs.
+      # @param [Hash] options
+      # @return [String]
+      ###
       def id_param(options)
         options.delete(:id)
       end
 
+      ###
+      # @return [Array]
+      ###
       def data_keys
         @data_keys ||= []
       end
+
+      ###
+      # Defines accessor for an internal @data Hash.
+      # Methods defined are (key_name) and (key_name)=
+      # @param [Symbol] key_name
+      # @param [Hash] options
+      ###
       def data_key(key_name, options={})
         options = { write: true, read: true, path: key_name }.merge(options)
         key_path = options.fetch(:path)
@@ -46,11 +70,17 @@ module Dawn
       end
     end
 
+    # :nodoc:
     def self.included(mod)
       mod.extend ClassExtension
     end
 
     include RequestExtension
+
+    ###
+    # Generates a Hash from the data_keys
+    # @return [Hash]
+    ###
     def to_h
       self.class.data_keys.each_with_object({}) do |key, hash|
         hash[key] = send(key) if respond_to?(key)

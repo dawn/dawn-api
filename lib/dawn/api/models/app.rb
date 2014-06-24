@@ -6,10 +6,11 @@ require 'dawn/api/models/app/drains'
 require 'dawn/api/models/app/domains'
 require 'dawn/api/models/app/releases'
 
-module Dawn
-  class App
+module Dawn #:nodoc:
+  class App #:nodoc:
     include BaseApi
 
+    # @type [Dawn::App::Env]
     attr_reader :env
     # @type [String]
     data_key :id, write: false
@@ -22,27 +23,45 @@ module Dawn
     # @type [Hash<String, Integer>]
     data_key :formation
 
+    ###
+    # @param [Hash] data
+    ###
     def initialize(data)
       @data = data
       @data["env"] = @env = Env.new(self, @data.delete("env"))
     end
 
+    ###
+    # @return [Dawn::App::Gears]
+    ###
     def gears
       @gears ||= Gears.new self
     end
 
+    ###
+    # @return [Dawn::App::Drains]
+    ###
     def drains
       @drains ||= Drains.new self
     end
 
+    ###
+    # @return [Dawn::App::Domains]
+    ###
     def domains
       @domains ||= Domains.new self
     end
 
+    ###
+    # @return [Dawn::App::Releases]
+    ###
     def releases
       @releases ||= Releases.new self
     end
 
+    ###
+    # @return [self]
+    ###
     def refresh(options={})
       @data = get(
         path: "/apps/#{id}",
@@ -51,6 +70,9 @@ module Dawn
       self
     end
 
+    ###
+    # @return [self]
+    ###
     def update(options={})
       options.fetch(:app)
 
@@ -61,36 +83,60 @@ module Dawn
       self
     end
 
+    ###
+    # @return [self]
+    ###
     def save
       update(app: @data)
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def destroy(options={})
       self.class.destroy(options.merge(id: id))
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def run(options={})
       self.class.run(options.merge(id: id))
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def logs(options={})
       self.class.logs(options.merge(id: id))
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def scale(options={})
-      self.class.scale(options.merge(id: id))
+      @data["formation"] = self.class.scale(options.merge(id: id))
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def restart(options={})
       self.class.restart(options.merge(id: id))
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def self.id_param(options)
       options.delete(:id) ||
       options.delete(:name) ||
       raise
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def self.create(options)
       options.fetch(:app)
 
@@ -100,6 +146,10 @@ module Dawn
       )["app"]
     end
 
+    ###
+    # @param [Hash] options
+    # @return [Array<Dawn::App>]
+    ###
     def self.all(options={})
       get(
         path: "/apps",
@@ -107,6 +157,9 @@ module Dawn
       ).map { |d| new d["app"] }
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def self.find(options)
       id = id_param(options)
 
@@ -116,6 +169,9 @@ module Dawn
       )["app"]
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def self.update(options)
       id = id_param(options)
       options.fetch(:app)
@@ -126,6 +182,9 @@ module Dawn
       )["app"]
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def self.destroy(options={})
       id = id_param(options)
 
@@ -135,6 +194,9 @@ module Dawn
       )
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def self.restart(options={})
       id = id_param(options)
 
@@ -144,6 +206,9 @@ module Dawn
       )
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def self.logs(options={})
       id = id_param(options)
 
@@ -155,6 +220,9 @@ module Dawn
       "http://#{Dawn.log_host}#{url}"
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def self.scale(options={})
       id = id_param(options)
       options.fetch(:app).fetch(:formation)
@@ -165,6 +233,9 @@ module Dawn
       )
     end
 
+    ###
+    # @param [Hash] options
+    ###
     def self.run(options={})
       id = id_param(options)
       options.fetch(:command)
