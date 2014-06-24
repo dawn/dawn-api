@@ -20,7 +20,7 @@ module Dawn
       @data = get(
         path: "/account",
         query: options
-      )["account"]
+      )["user"]
     end
 
     def update(options={})
@@ -29,14 +29,14 @@ module Dawn
       @data = patch(
         path: "/account",
         body: options.to_json
-      )["account"]
+      )["user"]
     end
 
     def self.current(options={})
       new get(
         path: "/account",
         query: options
-      )["account"]
+      )["user"]
     end
 
   end
