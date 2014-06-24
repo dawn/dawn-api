@@ -22,8 +22,10 @@ module Dawn
       end
     end
 
-    def safe
-      SafeContext.new(self)
+    def safe(*args, &block)
+      context = SafeContext.new(self)
+      return context.send(*args, &block) unless args.empty?
+      context
     end
   end
 end
