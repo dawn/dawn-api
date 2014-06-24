@@ -4,8 +4,7 @@ require 'dawn/api/models/release'
 module Dawn
   class App
     class Releases
-      include BaseApi
-      include Enumerable
+      include BaseApi, Enumerable
 
       # @type [Dawn::App]
       attr_reader :app

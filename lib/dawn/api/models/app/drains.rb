@@ -4,8 +4,7 @@ require 'dawn/api/models/drain'
 module Dawn
   class App
     class Drains
-      include BaseApi
-      include Enumerable
+      include BaseApi, Enumerable
 
       # @type [Dawn::App]
       attr_reader :app

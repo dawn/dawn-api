@@ -4,8 +4,7 @@ require 'dawn/api/models/gear'
 module Dawn
   class App
     class Gears
-      include BaseApi
-      include Enumerable
+      include BaseApi, Enumerable
 
       # @type [Dawn::App]
       attr_reader :app
