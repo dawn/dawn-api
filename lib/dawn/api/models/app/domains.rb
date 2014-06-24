@@ -42,6 +42,10 @@ module Dawn
         Domain.find(options).tap { |d| d.app = @app }
       end
 
+      def destroy(options)
+        Domain.destroy(options)
+      end
+
     end
   end
 end

@@ -42,6 +42,10 @@ module Dawn
         Drain.find(options).tap { |d| d.app = @app }
       end
 
+      def destroy(options)
+        Drain.destroy(options)
+      end
+
     end
   end
 end

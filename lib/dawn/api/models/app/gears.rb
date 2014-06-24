@@ -49,6 +49,10 @@ module Dawn
         )
       end
 
+      def destroy(options)
+        Gear.destroy(options)
+      end
+
     end
   end
 end

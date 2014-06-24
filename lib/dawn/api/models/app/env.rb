@@ -4,7 +4,11 @@ module Dawn
   class App
     class Env < Hash
 
+      alias :__delete__ :delete
       include BaseApi
+      alias :api_delete :delete
+      alias :delete :__delete__
+      remove_method :__delete__
 
       attr_reader :app
 
