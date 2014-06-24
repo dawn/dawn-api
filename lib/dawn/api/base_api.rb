@@ -32,6 +32,8 @@ module Dawn
         define_method(key_name.to_s+"=") do |v|
           route_dp.inject(@data) { |d, key| d[key] }[last_key] = v
         end
+
+        return key_name
       end
     end
 
