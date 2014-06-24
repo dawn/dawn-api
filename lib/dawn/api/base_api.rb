@@ -1,4 +1,5 @@
 require 'dawn/api/authenticate'
+require 'dawn/api/safe/base_api'
 require 'json'
 
 module Dawn
