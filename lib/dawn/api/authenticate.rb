@@ -24,6 +24,11 @@ module Dawn
 
   class << self
     attr_accessor :last_response_body
+    attr_accessor :log
+  end
+
+  def self.debug(*args, &block)
+    @log && @log.puts(*args, &block)
   end
 
   def self.request(options)
