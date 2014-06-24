@@ -14,6 +14,10 @@ module Dawn
         @app = app
       end
 
+      def to_a
+        all
+      end
+
       def each(&block)
         all.each(&block)
       end
