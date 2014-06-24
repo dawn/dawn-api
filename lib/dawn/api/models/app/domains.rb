@@ -4,10 +4,10 @@ require 'dawn/api/models/domain'
 module Dawn
   class App
     class Domains
-
       include BaseApi
       include Enumerable
 
+      # @type [Dawn::App]
       attr_reader :app
 
       def initialize(app)
@@ -45,7 +45,6 @@ module Dawn
       def destroy(options)
         Domain.destroy(options)
       end
-
     end
   end
 end

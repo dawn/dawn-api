@@ -2,7 +2,6 @@ require 'dawn/api/base_api'
 
 module Dawn
   class Key
-
     include BaseApi
 
     attr_reader :data
@@ -11,11 +10,16 @@ module Dawn
       @data = data
     end
 
-    data_key :id
-    data_key :created_at
-    data_key :updated_at
-    data_key :fingerprint
-    data_key :key
+    # @type [String]
+    data_key :id, write: false
+    # @type [Integer]
+    data_key :created_at, write: false
+    # @type [Integer]
+    data_key :updated_at, write: false
+    # @type [String]
+    data_key :fingerprint, write: false
+    # @type [String]
+    data_key :key, write: false
 
     def destroy(options={})
       self.class.destroy(options.merge(id: id))
@@ -58,6 +62,5 @@ module Dawn
     class << self
       private :new
     end
-
   end
 end

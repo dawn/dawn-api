@@ -2,19 +2,24 @@ require 'dawn/api/base_api'
 
 module Dawn
   class Account
-
     include BaseApi
 
     def initialize(hsh)
       @data = hsh
     end
 
-    data_key :id
-    data_key :created_at
-    data_key :updated_at
+    # @type [String]
+    data_key :id, write: false
+    # @type [Integer]
+    data_key :created_at, write: false
+    # @type [Integer]
+    data_key :updated_at, write: false
+    # @type [String]
     data_key :username
+    # @type [String]
     data_key :email
-    data_key :api_key
+    # @type [String]
+    data_key :api_key, write: false
 
     def refresh(options={})
       @data = get(
@@ -42,6 +47,5 @@ module Dawn
         query: options
       )["user"]
     end
-
   end
 end

@@ -4,10 +4,10 @@ require 'dawn/api/models/release'
 module Dawn
   class App
     class Releases
-
       include BaseApi
       include Enumerable
 
+      # @type [Dawn::App]
       attr_reader :app
 
       def initialize(app)
@@ -41,7 +41,6 @@ module Dawn
       def find(options={})
         Release.find(options).tap { |d| d.app = @app }
       end
-
     end
   end
 end

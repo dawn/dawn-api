@@ -8,7 +8,6 @@ require 'dawn/api/models/app/releases'
 
 module Dawn
   class App
-
     include BaseApi
 
     attr_reader :data
@@ -19,10 +18,15 @@ module Dawn
       @env = Env.new(self, @data.delete("env"))
     end
 
-    data_key :id
-    data_key :created_at
-    data_key :updated_at
-    data_key :name
+    # @type [String]
+    data_key :id, write: false
+    # @type [Integer]
+    data_key :created_at, write: false
+    # @type [Integer]
+    data_key :updated_at, write: false
+    # @type [String]
+    data_key :name, write: false
+    # @type [Hash<String, Integer>]
     data_key :formation
 
     def gears
@@ -170,6 +174,5 @@ module Dawn
         body: options.to_json
       )
     end
-
   end
 end

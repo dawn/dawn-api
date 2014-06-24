@@ -4,10 +4,10 @@ require 'dawn/api/models/gear'
 module Dawn
   class App
     class Gears
-
       include BaseApi
       include Enumerable
 
+      # @type [Dawn::App]
       attr_reader :app
 
       def initialize(app)
@@ -52,7 +52,6 @@ module Dawn
       def destroy(options)
         Gear.destroy(options)
       end
-
     end
   end
 end

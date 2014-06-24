@@ -2,7 +2,6 @@ require 'dawn/api/base_api'
 
 module Dawn
   class Release
-
     include BaseApi
 
     attr_reader :data
@@ -13,11 +12,16 @@ module Dawn
       @data = data
     end
 
-    data_key :id
-    data_key :created_at
-    data_key :updated_at
-    data_key :image
-    data_key :app_id, "app/id"
+    # @type [String]
+    data_key :id, write: false
+    # @type [Integer]
+    data_key :created_at, write: false
+    # @type [Integer]
+    data_key :updated_at, write: false
+    # @type [String]
+    data_key :image, write: false
+    # @type [String]
+    data_key :app_id, path: "app/id", write: false
 
     def app
       @app ||= App.find(id: app_id)
@@ -47,6 +51,5 @@ module Dawn
         query: options
       )["release"]
     end
-
   end
 end

@@ -3,13 +3,13 @@ require 'dawn/api/base_api'
 module Dawn
   class App
     class Env < Hash
-
       alias :__delete__ :delete
       include BaseApi
       alias :api_delete :delete
       alias :delete :__delete__
       remove_method :__delete__
 
+      # @type [Dawn::App]
       attr_reader :app
 
       def initialize(app, data)
@@ -31,7 +31,6 @@ module Dawn
           body: { app: { env: merge(options) } }.to_json
         )["env"]
       end
-
     end
   end
 end

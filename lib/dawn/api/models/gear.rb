@@ -2,7 +2,6 @@ require 'dawn/api/base_api'
 
 module Dawn
   class Gear
-
     include BaseApi
 
     attr_reader :data
@@ -13,14 +12,22 @@ module Dawn
       @data = data
     end
 
-    data_key :id
-    data_key :created_at
-    data_key :updated_at
-    data_key :name
-    data_key :uptime
-    data_key :proctype
-    data_key :number
-    data_key :app_id, "app/id"
+    # @type [String]
+    data_key :id, write: false
+    # @type [Integer]
+    data_key :created_at, write: false
+    # @type [Integer]
+    data_key :updated_at, write: false
+    # @type [String]
+    data_key :name, write: false
+    # @type [Integer]
+    data_key :uptime, write: false
+    # @type [String]
+    data_key :proctype, write: false
+    # @type [Integer]
+    data_key :number, write: false
+    # @type [String]
+    data_key :app_id, path: "app/id", write: false
 
     def app
       @app ||= App.find(id: app_id)
@@ -74,6 +81,5 @@ module Dawn
         query: options
       )
     end
-
   end
 end
