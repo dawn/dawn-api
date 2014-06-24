@@ -4,14 +4,7 @@ module Dawn
   class Release
     include BaseApi
 
-    attr_reader :data
     attr_writer :app
-
-    def initialize(data)
-      @app = nil
-      @data = data
-    end
-
     # @type [String]
     data_key :id, write: false
     # @type [Integer]
@@ -23,17 +16,21 @@ module Dawn
     # @type [String]
     data_key :app_id, path: "app/id", write: false
 
+    def initialize(data)
+      @app = nil
+      @data = data
+    end
+
     def app
       @app ||= App.find(id: app_id)
     end
 
     def refresh
-      @data = request(
-        expects: 200,
-        method: :get,
+      @data = get(
         path: "/releases/#{id}",
         query: options
       )["release"]
+      self
     end
 
     def self.all(options={})
