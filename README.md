@@ -1,12 +1,11 @@
 Dawn-API
 ========
-[link](https://github.com/dawn/dawn-api)
-
 [![Dependency Status](https://gemnasium.com/dawn/dawn-api.svg)](https://gemnasium.com/dawn/dawn-api)
 [![Gem Version](https://badge.fury.io/rb/dawn-api.svg)](http://badge.fury.io/rb/dawn-api)
 [![Code Climate](https://codeclimate.com/github/dawn/dawn-api.png)](https://codeclimate.com/github/dawn/dawn-api)
+[![Inch-CI](http://inch-ci.org/github/dawn/dawn-api.png?branch=master)](http://inch-ci.org/github/dawn/dawn-api)
 
-API for [Dawn](https://github.com/dawn/dawn)
+Ruby [API](https://github.com/dawn/dawn-api) for [Dawn](https://github.com/dawn/dawn)
 
 ## Installation
 ```shell
@@ -44,6 +43,6 @@ One day I'll write this properly, however for now:
 ```ruby
 Dawn.authenticate
 my_app = Dawn::App.create
-my_app.update(name: "DawnIsAwesome")
+my_app.domains.all
 my_app.gears.restart
 ```
