@@ -32,6 +32,14 @@ module Dawn #:nodoc:
     end
 
     ###
+    # Returns the git remote path for this App
+    # @return [String]
+    ###
+    def git
+      @git ||= "#{Dawn::Account.current.username}~#{name}.git"
+    end
+
+    ###
     # @return [Dawn::App::Gears]
     ###
     def gears
