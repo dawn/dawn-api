@@ -24,7 +24,7 @@ module Dawn #:nodoc:
   # @return [String]
   ###
   def self.git_host
-    ENV["DAWN_GIT_HOST"] || dawn_host
+    ENV["DAWN_GIT_HOST"] || "#{dawn_host}:2201"
   end
 
   ###
